@@ -1,6 +1,6 @@
-baseURL = ""
+baseURL = "/"
 languageCode = "en"
-title = "Hugo Blog"
+title = "Panda Learns To Code"
 theme = "hugo-nuo"
 enableRobotsTXT = true
 PygmentsCodeFences = true
