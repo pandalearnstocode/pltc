@@ -36,11 +36,11 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
 
 # Add your own params here
 [params]
-  author = "Ritchie Zhu"
+  author = "Aritra Biswas"
   bg = "images/grey-prism.svg"
   avatar = "images/avatar.png"
-  seotitle = "Hugo Blog (SEO Version)"
-  subtitle = "~ Keep It Simple & Stupid ~"
+  seotitle = "Panda Learns To Code"
+  subtitle = "~ My name is Aritra and welcome to my blog ~"
   description = "Hugo is one of the most popular open-source static site generators. With its amazing speed and flexibility, Hugo makes building websites fun again."
   paginate = 10
 
