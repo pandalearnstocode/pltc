@@ -1,6 +1,6 @@
 baseURL = ""
 languageCode = "en"
-title = "Hugo Blog"
+title = "Panda Learns To Code"
 theme = "hugo-nuo"
 enableRobotsTXT = true
 PygmentsCodeFences = true
@@ -26,7 +26,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   name = "Works"
   weight = 20
   identifier = "works"
-  url = "https://github.com/laozhu"
+  url = "https://github.com/pandalearnstocode"
 
 [[menu.main]]
   name = "Tags"
