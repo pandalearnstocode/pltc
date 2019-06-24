@@ -6,6 +6,7 @@ slug: python-type-checking
 categories: []
 tags: []
 cover: /img/python_img/mypy.png
+draft: false
 ---
 
 # Type checking in Python
