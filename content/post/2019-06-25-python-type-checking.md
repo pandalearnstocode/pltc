@@ -18,6 +18,7 @@ draft: false
 * __Dynamic__ typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
 
 For details check [this](https://stackoverflow.com/questions/11328920/is-python-strongly-typed).
+
 <!--more-->
 
 Let us write a function which will return addition of two numbers.
