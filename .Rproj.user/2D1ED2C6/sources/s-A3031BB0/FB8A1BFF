@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "0",
+    "hash" : "1051872724",
     "id" : "FB8A1BFF",
-    "lastKnownWriteTime" : 1561299830,
-    "last_content_update" : 1561299830115,
+    "lastKnownWriteTime" : 1561412671,
+    "last_content_update" : 1561412671014,
     "path" : "~/Documents/Aritra/Blog/pandalearnstocode/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "106,0",
-        "scrollLine" : "52"
+        "cursorPosition" : "108,0",
+        "scrollLine" : "87"
     },
     "read_only" : false,
     "read_only_alternatives" : [
