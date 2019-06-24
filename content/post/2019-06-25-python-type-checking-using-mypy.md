@@ -2,13 +2,16 @@
 title: Python type checking using mypy
 author: Aritra Biswas
 date: '2019-06-25'
-slug: python-type-checking
+slug: python-type-checking-using-mypy
 categories: []
 tags: []
 cover: /img/python_img/mypy.png
 draft: false
 ---
 
+Cut out summary from your post content here.
+
+<!--more-->
 # Type checking in Python
 
 ## Python is strongly, dynamically typed.
