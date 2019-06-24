@@ -42,6 +42,15 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Hello World</title>
+      <link>/post/hello-world/</link>
+      <pubDate>Tue, 25 Jun 2019 05:24:08 +0530</pubDate>
+      
+      <guid>/post/hello-world/</guid>
+      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Resume</title>
       <link>/resume/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>

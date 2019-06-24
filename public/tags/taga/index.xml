@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Panda Learns To Code</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on Panda Learns To Code</description>
+    <title>Taga on Panda Learns To Code</title>
+    <link>/tags/taga/</link>
+    <description>Recent content in Taga on Panda Learns To Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 25 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Jun 2019 05:24:08 +0530</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/taga/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Python type checking using mypy</title>
-      <link>/post/python-type-checking-using-mypy/</link>
-      <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/python-type-checking-using-mypy/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
-    </item>
     
     <item>
       <title>Hello World</title>

@@ -5,7 +5,7 @@ date: '2019-06-25'
 slug: python-type-checking-using-mypy
 categories: []
 tags: []
-cover: /img/python_img/mypy.png
+cover: "/img/python_img/mypy.png"
 draft: false
 ---
 
