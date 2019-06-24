@@ -33,6 +33,17 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>Python type checking using mypy</title>
+      <link>/post/python-type-checking/</link>
+      <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/python-type-checking/</guid>
+      <description>Type checking in Python Python is strongly, dynamically typed.  Strong typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
+ Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
+  For details check this.</description>
+    </item>
+    
+    <item>
       <title>Resume</title>
       <link>/resume/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
