@@ -1,4 +1,4 @@
-baseURL = ""
+baseURL = "/"
 languageCode = "en"
 title = "Panda Learns To Code"
 theme = "hugo-nuo"
