@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = ""
 languageCode = "en"
 title = "Panda Learns To Code"
 theme = "hugo-nuo"
@@ -33,6 +33,12 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   weight = 30
   identifier = "tags"
   url = "/tags/"
+  
+[[menu.main]]
+  name = "Blog"
+  weight = 30
+  identifier = "blog"
+  url = "/post/"
 
 # Add your own params here
 [params]
