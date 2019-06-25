@@ -8,13 +8,9 @@ tags: []
 cover: "/img/python_img/mypy.png"
 draft: false
 ---
-
-Cut out summary from your post content here.
-
-<!--more-->
 # Type checking in Python
 
-## Python is strongly, dynamically typed.
+## Python is strongly, dynamically typed programming language.
 
 * __Strong__ typing means that the type of a value doesn't change in unexpected ways. A string containing only digits doesn't magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
 

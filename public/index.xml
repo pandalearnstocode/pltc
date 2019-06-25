@@ -38,16 +38,17 @@ It makes use of a variety of open source projects including:
       <pubDate>Tue, 25 Jun 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/python-type-checking-using-mypy/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>/post/hello-world/</link>
-      <pubDate>Tue, 25 Jun 2019 05:24:08 +0530</pubDate>
-      
-      <guid>/post/hello-world/</guid>
-      <description>&lt;p&gt;Cut out summary from your post content here.&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;type-checking-in-python&#34;&gt;Type checking in Python&lt;/h1&gt;
+
+&lt;h2 id=&#34;python-is-strongly-dynamically-typed-programming-language&#34;&gt;Python is strongly, dynamically typed programming language.&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Strong&lt;/strong&gt; typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Dynamic&lt;/strong&gt; typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For details check &lt;a href=&#34;https://stackoverflow.com/questions/11328920/is-python-strongly-typed&#34;&gt;this&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
