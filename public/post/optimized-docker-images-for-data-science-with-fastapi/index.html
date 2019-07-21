@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Optimized docker images for Data Science With FastAPI</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Aritra Biswas">
+  <meta name="description" content="Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pdlearnstocode">
+    <meta name="twitter:title" content="Optimized docker images for Data Science With FastAPI">
+    <meta name="twitter:description" content="Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,
+">
+    <meta name="twitter:image" content="/img/python_img/docker.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Optimized docker images for Data Science With FastAPI">
+  <meta property="og:description" content="Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,
+">
+  <meta property="og:url" content="/post/optimized-docker-images-for-data-science-with-fastapi/">
+  <meta property="og:image" content="/img/python_img/docker.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.53">
+
+
+<link rel="canonical" href="/post/optimized-docker-images-for-data-science-with-fastapi/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Panda Learns To Code">
+<meta name="msapplication-tooltip" content="Panda Learns To Code">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/avatar.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="">Panda Learns To Code</a></h2>
+  
+  <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="https://github.com/pandalearnstocode">Works</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/post/">Blog</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/links/">Links</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:pandalearnstocode@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/pandalearnstocode" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/pdlearnstocode" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/pdlearns2code" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.youtube.com/channel/UCd3o4IJUJSmOFr6kHv6Y3vw" rel="me" title="YouTube" aria-label="YouTube">
+            <span class="icon icon-youtube" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//stackoverflow.com/users/9984132/pandalearnstocode" rel="me" title="Stack Overflow"  aria-label="Stack Overflow">
+            <span class="icon icon-stackoverflow" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/pandalearnstocode" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Optimized docker images for Data Science With FastAPI</h1>
+      <p class="post-meta">@Aritra Biswas · Jul 21, 2019 · 3 min read</p>
+    </header>
+    <article class="post-content"><p>Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,</p>
+
+<ol>
+<li>Alpine linux based docker container.</li>
+<li>Miniconda</li>
+<li>MKL, LLVM, SVML, ICC RT or Open BLAS</li>
+<li>Pandas, Numpy, Numba and Dask</li>
+<li>FastAPI</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM frolvlad/alpine-miniconda3:python3.6
+
+ENV PYTHONDONTWRITEBYTECODE<span style="color:#f92672">=</span>true
+
+RUN conda update -n base -c defaults conda
+
+RUN conda install --yes --freeze-installed <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    nomkl <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numpy<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    pandas<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numba<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    dask<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.pyc&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.js.map&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/lib/python*/site-packages/bokeh/server/static <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -follow -type f -name <span style="color:#e6db74">&#39;*.js&#39;</span> ! -name <span style="color:#e6db74">&#39;*.min.js&#39;</span> -delete
+
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev make <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> pip --no-cache-dir install uvicorn gunicorn fastapi pydantic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> apk del .build-deps gcc libc-dev make
+
+RUN rm -rf /var/cache/apk/* <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    rm -rf /tmp/* <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    rm -rf ~/.cache/pip
+
+COPY ./start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+COPY ./gunicorn_conf.py /gunicorn_conf.py
+
+COPY ./start-reload.sh /start-reload.sh
+
+RUN chmod +x /start-reload.sh
+
+COPY ./app /app
+
+WORKDIR /app/
+
+ENV PYTHONPATH<span style="color:#f92672">=</span>/app
+
+EXPOSE <span style="color:#ae81ff">80</span>
+
+CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t fa_mc_blas_dss .
+
+docker run -d -p <span style="color:#ae81ff">80</span>:80 fa_mc_blas_dss
+
+docker run -it fa_mc_blas_dss sh
+
+docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM frolvlad/alpine-miniconda3:python3.6
+
+ENV PYTHONDONTWRITEBYTECODE<span style="color:#f92672">=</span>true
+
+RUN apk add --no-cache --virtual .build-deps gcc libc-dev make <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> pip --no-cache-dir install uvicorn gunicorn fastapi pydantic <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> apk del .build-deps gcc libc-dev make
+
+RUN conda config --add channels intel <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed  -c intel numpy<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel numba<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel pandas<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel dask<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.pyc&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.js.map&#39;</span> -delete <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/lib/python*/site-packages/bokeh/server/static <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    -follow -type f -name <span style="color:#e6db74">&#39;*.js&#39;</span> ! -name <span style="color:#e6db74">&#39;*.min.js&#39;</span> -delete
+
+RUN rm -rf /var/cache/apk/* <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    rm -rf /tmp/* <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    rm -rf ~/.cache/pip
+
+COPY ./start.sh /start.sh
+
+RUN chmod +x /start.sh
+
+COPY ./gunicorn_conf.py /gunicorn_conf.py
+
+COPY ./start-reload.sh /start-reload.sh
+
+RUN chmod +x /start-reload.sh
+
+COPY ./app /app
+
+WORKDIR /app/
+
+ENV PYTHONPATH<span style="color:#f92672">=</span>/app
+
+EXPOSE <span style="color:#ae81ff">80</span>
+
+CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t fa_mc_mkl_svml_dss .
+
+docker run -d -p <span style="color:#ae81ff">80</span>:80 fa_mc_mkl_svml_dss
+
+docker run -it fa_mc_mkl_svml_dss sh
+
+docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span></code></pre></div></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/docker"><span class="tag">Docker</span></a></li>
+        
+          <li><a href="/tags/numba"><span class="tag">Numba</span></a></li>
+        
+          <li><a href="/tags/dask"><span class="tag">Dask</span></a></li>
+        
+          <li><a href="/tags/numpy"><span class="tag">Numpy</span></a></li>
+        
+          <li><a href="/tags/pandas"><span class="tag">Pandas</span></a></li>
+        
+          <li><a href="/tags/fastapi"><span class="tag">FastAPI</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2019 Panda Learns To Code</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Tue, 25 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jul 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Optimized docker images for Data Science With FastAPI</title>
+      <link>/post/optimized-docker-images-for-data-science-with-fastapi/</link>
+      <pubDate>Sun, 21 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/optimized-docker-images-for-data-science-with-fastapi/</guid>
+      <description>&lt;p&gt;Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Python type checking using mypy</title>
