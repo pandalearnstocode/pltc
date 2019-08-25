@@ -28,7 +28,7 @@ Lets build a container based application which is optimized in terms of resource
 
 
 ```bash
-
+# Starting from a minimalistic alpine and miniconda base image
 FROM frolvlad/alpine-miniconda3:python3.6
 
 ENV PYTHONDONTWRITEBYTECODE=true

@@ -139,9 +139,9 @@
     
     
   <header class="site-header">
-  <a href=""><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
+  <a href="/"><img class="avatar" src="/images/avatar.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="">Panda Learns To Code</a></h2>
+  <h2 class="title"><a href="/">Panda Learns To Code</a></h2>
   
   <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -247,7 +247,8 @@
 <li>Pandas, Numpy, Numba and Dask</li>
 <li>FastAPI</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM frolvlad/alpine-miniconda3:python3.6
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Starting from a minimalistic alpine and miniconda base image</span>
+FROM frolvlad/alpine-miniconda3:python3.6
 
 ENV PYTHONDONTWRITEBYTECODE<span style="color:#f92672">=</span>true
 
