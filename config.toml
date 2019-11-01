@@ -40,6 +40,13 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   identifier = "blog"
   url = "/post/"
 
+[[menu.main]]
+  name = "Resume"
+  weight = 30
+  identifier = "blog"
+  url = "/resume/"
+
+
 # Add your own params here
 [params]
   author = "Aritra Biswas"
