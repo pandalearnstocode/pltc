@@ -56,7 +56,7 @@ interests = [
     title = "Senior Research Executive"
     year = "06/2018 - now"
     projects = [
-      "Power BI embedded dashboard solution: Developed an advanced ETL pipeline & validation for automated integration in the app.",
+      "Media dashboards: Developed an advanced ETL pipeline & validation in the app. Integrated PBI Embeded API auto publish.",
       "Lift solution: Developed and implimened an alternative Convex optimization based methodology for store matching algorithm in Python.",
       "Marketing budget planner: Developed Batch Based Monte Carlo Grid Search Algorithm for constrainted protfolio budget allocation.",
       "Pure Numpy and Numba code for Monte Carlo Simulation using Intel Math Kernel Library(MKL) and Short Vector Math Library (SVML).",
@@ -64,11 +64,11 @@ interests = [
     ]
 
   [[experience.list]]
-    name = "Amazon Web Services"
-    company = "Amazon"
-    location = "Seattle, WA, USA"
-    title = "Software Engineer"
-    year = "09/2014 - 12/2015"
+    name = "MMM Product Development, Global Markets"
+    company = "The Nielsen Company"
+    location = "Bangalore, India"
+    title = "Research Executive"
+    year = "06/2017 - 05/2018"
     projects = [
       """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
          Suspendisse elit quam""",
@@ -76,18 +76,6 @@ interests = [
          Suspendisse elit quam""",
       """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
          Suspendisse elit quam""",
-    ]
-
-  [[experience.list]]
-    name = "Aliyun"
-    company = "Alibaba, Inc."
-    location = "Hangzhou, Zhejiang, China"
-    title = "Software Engineer"
-    year = "01/2009 - 08/2014"
-    projects = [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     ]
 
 [skill]
@@ -97,18 +85,8 @@ interests = [
     level = "80"
   [[skill.list]]
     name = "Python"
-    level = "80"
+    level = "75"
 
   [[skill.list]]
-    name = "C"
-    level = "80"
-
-  [[skill.list]]
-    name = "Julia"
-    level = "80"
-  [[skill.list]]
-    name = "Latex"
-    level = "80"
-  [[skill.list]]
-    name = "Markdown"
-    level = "80"
+    name = "C/C++"
+    level = "60"
