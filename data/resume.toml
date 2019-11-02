@@ -39,27 +39,29 @@ interests = [
   [[education.list]]
     degree = "M.Sc. Statistics"
     school = "University of Delhi"
-    year = "2015-2017"
     description = "Special paper: Advanced statistical computing and data mining"
 
   [[education.list]]
     degree = "B.Sc. Statistics"
     school = "Presidency College, University of Calcutta"
-    year = "2010-2014"
     description = "Courses: ALinear algebra, Statistical computing"
 
 
 [experience]
 
   [[experience.list]]
-    name = "Google Cloud"
-    company = "Google, Inc."
-    location = "Mountain View, CA, USA"
-    title = "Software Engineer"
-    year = "01/2016 - now"
-    description = """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Suspendisse elit quam, maximus eget ex eget, vehicula ultricies nunc.
-      Nam sodales eu ipsum non ultricies."""
+    name = "MMM Product Development, Global Markets"
+    company = "The Nielsen Company"
+    location = "Bangalore, India"
+    title = "Senior Research Executive"
+    year = "06/2018 - now"
+    projects = [
+      "Power BI embedded dashboard solution: Developed an advanced ETL pipeline & validation for automated integration in the app.",
+      "Lift solution: Developed and implimened an alternative Convex optimization based methodology for store matching algorithm in Python.",
+      "Marketing budget planner: Developed Batch Based Monte Carlo Grid Search Algorithm for constrainted protfolio budget allocation.",
+      "Pure Numpy and Numba code for Monte Carlo Simulation using Intel Math Kernel Library(MKL) and Short Vector Math Library (SVML).",
+      "Measuring performance of multiple linear algebra library such as BLAS, CBLAS, LAPACK, CLAPACK, LAPACKE, ATLAS, OpenBLAS and MKL."
+    ]
 
   [[experience.list]]
     name = "Amazon Web Services"
