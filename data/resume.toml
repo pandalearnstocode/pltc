@@ -8,47 +8,38 @@ languages = [
 ]
 
 interests = [
-  "Travel",
+  "Traveling",
   "Cooking"
 ]
 
 [contact]
-
   [[contact.list]]
     class = "email"
     url = "mailto:pandalearnstocode@gmail.com"
     title = "pandalearnstocode@gmail.com"
-
   [[contact.list]]
     class = "phone"
     url = "tel:9051237918"
     title = "+91-9051237918"
-
   [[contact.list]]
     class = "github"
     url = "//github.com/pandalearnstocode"
     title = "github.com/pandalearnstocode"
-
   [[contact.list]]
     class = "website"
     url = "//pandalearnstocode.in"
     title = "pandalearnstocode.in"
 
 [education]
-
   [[education.list]]
     degree = "M.Sc. Statistics"
     school = "University of Delhi"
     description = "Special paper: Advanced statistical computing and data mining"
-
   [[education.list]]
     degree = "B.Sc. Statistics"
     school = "Presidency College, University of Calcutta"
     description = "Courses: ALinear algebra, Statistical computing"
-
-
 [experience]
-
   [[experience.list]]
     name = "MMM Product Development, Global Markets"
     company = "The Nielsen Company"
@@ -60,9 +51,7 @@ interests = [
       "Lift solution: Developed and implimened an alternative Convex optimization based methodology for store matching algorithm in Python.",
       "Marketing budget planner: Developed Batch Based Monte Carlo Grid Search Algorithm for constrainted protfolio budget allocation.",
       "Pure Numpy and Numba code for Monte Carlo Simulation using Intel Math Kernel Library(MKL) and Short Vector Math Library (SVML).",
-      "Measuring performance of multiple linear algebra library such as BLAS, CBLAS, LAPACK, CLAPACK, LAPACKE, ATLAS, OpenBLAS and MKL."
     ]
-
   [[experience.list]]
     name = "MMM Product Development, Global Markets"
     company = "The Nielsen Company"
@@ -70,23 +59,18 @@ interests = [
     title = "Research Executive"
     year = "06/2017 - 05/2018"
     projects = [
-      """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Suspendisse elit quam""",
-      """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Suspendisse elit quam""",
-      """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-         Suspendisse elit quam""",
+      "Implemented of Nielsen methodology using latest Python Scientific Computating stack for budget allocation.",
+      "Designing data schema to impliment non-standard evaluationary methods using various python libraries for performace optimization.",
+      "Measuring performance of multiple linear algebra library such as BLAS, CBLAS, LAPACK, CLAPACK, LAPACKE, ATLAS, OpenBLAS and MKL.",
     ]
 
 [skill]
-
   [[skill.list]]
     name = "R"
     level = "80"
   [[skill.list]]
     name = "Python"
     level = "75"
-
   [[skill.list]]
     name = "C/C++"
     level = "60"
