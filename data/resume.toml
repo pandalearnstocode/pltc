@@ -47,10 +47,10 @@ interests = [
     title = "Senior Research Executive"
     year = "06/2018 - now"
     projects = [
-      "Media dashboards: Developed an advanced ETL pipeline & validation in the app. Integrated PBI Embeded API auto publish.",
+      "Media dashboards: Developed an advanced ETL pipeline & validation in the app. Integrated Microsoft PBI Embeded API for visualization.",
       "Lift solution: Developed and implimened an alternative Convex optimization based methodology for store matching algorithm in Python.",
-      "Marketing budget planner: Developed Batch Based Monte Carlo Grid Search Algorithm for constrainted protfolio budget allocation.",
-      "Measuring performance of multiple linear algebra library such as BLAS, CBLAS, LAPACK, CLAPACK, LAPACKE, ATLAS, OpenBLAS and MKL.",
+      "Marketing budget planner: Developed Batch Based Monte Carlo Grid Search Algorithm for constrainted portfolio budget allocation.",
+      "Measuring performance of various linear algebra library such as BLAS, CBLAS, LAPACK, CLAPACK, LAPACKE, ATLAS, OpenBLAS and MKL.",
       "Pure Numpy and Numba code for Monte Carlo Simulation using Intel Math Kernel Library(MKL) and Short Vector Math Library (SVML).",
     ]
   [[experience.list]]
@@ -60,7 +60,7 @@ interests = [
     title = "Research Executive"
     year = "06/2017 - 05/2018"
     projects = [
-      "Modeling platform: Implemented Nielsen's Additive model MMM modeling methodology using latest Python Scientific computating stack.",
+      "Modeling platform: Implemented Nielsen's Additive model MMM modeling methodology using latest Python Scientific Computing stack.",
       "Market planner: Designing data schema to impliment non-standard evaluationary methods Python for performace optimization.",
       "Compartive study of Convex Optimization, Mutiobjective Objective Optimization and Monte Carlo methods for log cancave density estimation. "
     ]
