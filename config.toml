@@ -23,29 +23,28 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   url = "/"
 
 [[menu.main]]
-  name = "Works"
+  name = "CV"
+  weight = 40
+  identifier = "resume"
+  url = "/resume/"
+  
+[[menu.main]]
+  name = "Work"
+  weight = 30
+  identifier = "projects"
+  url = "/projects/"
+  
+[[menu.main]]
+  name = "About"
   weight = 20
-  identifier = "works"
-  url = "https://github.com/pandalearnstocode"
+  identifier = "about"
+  url = "/about/"
 
 [[menu.main]]
   name = "Tags"
-  weight = 30
+  weight = 50
   identifier = "tags"
   url = "/tags/"
-  
-[[menu.main]]
-  name = "Blog"
-  weight = 30
-  identifier = "blog"
-  url = "/post/"
-
-[[menu.main]]
-  name = "Resume"
-  weight = 30
-  identifier = "blog"
-  url = "/resume/"
-
 
 # Add your own params here
 [params]

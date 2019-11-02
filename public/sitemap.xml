@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>/about/</loc>
-    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/docker-for-data-science/</loc>
     <lastmod>2019-08-25T00:00:00+00:00</lastmod>
   </url>
@@ -30,6 +25,21 @@
   <url>
     <loc>/resume/</loc>
     <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/about/</loc>
+    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/contacts/</loc>
+    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/projects/</loc>
+    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>

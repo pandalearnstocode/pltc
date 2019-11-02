@@ -1,6 +1,6 @@
 ---
 date: "2014-04-09"
-layout: about
+layout: links
 ---
 
 Hugo is a static site engine written in Go.
