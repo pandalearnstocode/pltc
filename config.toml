@@ -26,7 +26,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   name = "CV"
   weight = 40
   identifier = "resume"
-  url = "/resume/"
+  url = "/AritraBiswas_Resume.pdf"
   
 [[menu.main]]
   name = "Work"
