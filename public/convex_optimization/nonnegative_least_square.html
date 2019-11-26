@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Application of Convex Optimization</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Aritra Biswas" />
+    <meta name="date" content="2019-11-27" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Application of Convex Optimization
+## in Marketing Mix Modeling
+### Aritra Biswas
+### 2019-11-27
+
+---
+
+class: center, middle
+
+# Usecase of Non-negative least square in Marketing Mix Modeling
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/72/Max_paraboloid.svg)
+
+
+
+???
+
+Image credit: [Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/7/72/Max_paraboloid.svg)
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Simulation : Description
+
+Let's generate some synthetic data for analysis. Here are some of the key points we need to keep in mind during the data generation process.
+--
+
+- There is only one brand, sub-brand, geography and region is under consideration.
+
+--
+
+- Data is collected at a weekly level for one year (52 data points).
+
+--
+
+- For this analysis there will be 4 base, 4 media and 2 promotion variables.
+
+--
+
+- 3 base variables are say distribution, pricing and competition discount.
+
+--
+
+- 4 media variables are say competition GRPs, TV, YT and OOH.
+
+--
+
+- 2 promotion variables promotion and discount.
+
+--
+
+.footnote[
+[1] [Note regarding marketing mix](https://en.wikipedia.org/wiki/Marketing_mix_modeling)
+
+[2] [Various terminalogies of MMM](https://medium.com/@iamsongara/what-are-atl-btl-and-ttl-7a7053206a9a)
+]
+
+---
+# Simulation : Notation
+
+- `\(\boldsymbol{Y_{(p,g,t)}}\)`: Dependent variable with product, geography and time index. Here for this problem since we are dealing with only one region, product and geography it can be written as, `\(Y_{t}\)`.
+
+- `\(\boldsymbol{n}\)`: Number of variables under study. This includes all base, media and promotion varibles.
+
+- `\(\boldsymbol{m}\)`: Number of observations present of a variable. In this case number of weeks for which the data is available.
+
+- `\(\boldsymbol{X}\)`: Independent varible including all the variables for all the period under study. Unit vector has to be appended on if the regression line does not pass through origin.
+
+- `\(\boldsymbol{\beta}\)`: Population parameters which is unknow. Here we will assume that we know the values to simulate the synthetic data.
+
+- `\(\boldsymbol{\hat{\beta}_{OLS}}\)`: Estimated population parameters in OLS. The closed form of solution can be expressed as, `\({\hat {\boldsymbol {\beta }}}=(\mathbf {X} ^{\rm {T}}\mathbf {X} )^{-1}\mathbf {X} ^{\rm {T}}\mathbf {y}\)`
+
+---
+# Simulation : Notation
+
+- `\(\boldsymbol{\hat{\beta}_{NNLS}}\)`: Estimated parameters `\(\boldsymbol{\beta}\)` with constraint, `\(\boldsymbol{\hat{\beta}_{NNLS} \ge 0}\)`.
+- `\(\boldsymbol{\hat{\beta}_{||NNLS||_{1}}}\)`: Estimated parameters with constraint, `\(\boldsymbol{1\hat{\beta}_{NNLS}} = 1\)`
+
+- `\(\boldsymbol{\hat{\beta}_{(constrainted)}}\)`: Constraints enforced on estimated population parameters. Since estimated parameters are used to understand the contibution of each variables in the dependent variable, at times enforcing constraint on these may be important in terms of business justification. __For example, if competition is spending money on some tactic, the coefficient of that variable is expected to be negative.__
+
+- `\(\boldsymbol{\hat{Y}_{OLS}}\)`: Estimated values of the dependent variable using the estimated population parameters.
+
+- `\(\mathbf {X} \ \sim \ {\mathcal {N}}({\boldsymbol {\mu }},\,{\boldsymbol {\Sigma }})\)` : Let us assume that the independent variables follow multi-variate normal distribution with parameters `\(\mu\)` and `\(\Sigma\)`.
+
+- `\(e \sim N(0,\sigma)\)` : Error follows normal distribution with mean `\(0\)` and standard deviation `\(\sigma\)`.
+
+---
+# Simulation : Synthetic Data
+
+
+```r
+set.seed(12)
+# Number of base, media and promotion variables in the study
+no_var &lt;- 9
+# Number of weeks of avaiable data
+no_obs &lt;- 52
+# Simulating data from multi-varite normal distribution
+X &lt;- MASS::mvrnorm(no_obs, mean_execution, std_execution)
+# Let us assume that the population parameters of the data 
+# generation process is known.
+beta &lt;- c(0.8, 0, -2, -0.2, 0, 0.4, 1, 0, 0.7)
+# Generating dependent varible with MVN design matrix 
+# and gaussian noise.
+y &lt;- (X %*% beta) + rnorm(no_obs, 0, 1)
+```
+
+---
+# Simulation : Data review
+
+The simulated dataset will be like this,
+
+&lt;table class="table table-striped" style="font-size: 9px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Sales &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Distribution &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Pricing &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Competition discount &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Competition GRPs &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; TV &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; YT &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; OOH &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Promotion &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Discount &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2016-01-01 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6992 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9997 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9999 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2016-01-08 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7009 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10003 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10003 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9996 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9999 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2016-01-15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6997 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9999 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2016-01-22 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6993 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10001 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10002 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9998 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 10000 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9999 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Note, in this data we have two competion variables and the sign of these are expected to be negative.
+
+&lt;table class="table table-striped" style="font-size: 9px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variables &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ExpectedSign &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Distribution &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pricing &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition GRPs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TV &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; OOH &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Promotion &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+# Simulation : Data visualization
+
+The sales vs time plot of the generated synthetic data,
+
+![](nonnegative_least_square_files/figure-html/unnamed-chunk-4-1.svg)&lt;!-- --&gt;
+
+
+---
+
+# Problem statement:
+
+Here `\(\mathbf{X}\)`  is  `\(m\times n\)`, `\(\mathbf{Y}\)` is  `\(m\times 1\)`, and `\(\mathbf{\beta}\)` is `\(n\times 1\)`.
+
+Let us consider that the data generation process is as follows,
+
+`\(Y = X \beta + u\)`
+
+In order to understand the process we try to estimate the unknown parameters of the process `\(\beta\)` by using `\(\hat{\beta}\)`. We will solve the optimization problem in order to obtained estimated values of the `\(\beta\)` and will denote it as `\(\hat{\beta}\)`.
+
+`$$\begin{array}{ll}
+    \underset{\beta}{\mbox{minimize}} &amp; \|y - X\beta\|_2^2
+  \end{array}$$`
+
+One of the ways to obtain solution for the unknown parameters are as follows,
+
+`\(\hat{\beta}_{OLS} = (X^{\top }X)^{-1}X^{\top }Y\)`
+
+but the objective function is an convex function so this problem can be solved using convex optimization as well. So, we will try to solve this problem from analytical and numerical point of view and try to compare them in this study.
+
+---
+# Calculating `\(\hat{\beta}\)` using analytical solution
+
+As we know, `\(\hat{\beta}_{OLS} = (X^{\top }X)^{-1}X^{\top }Y\)`
+
+&lt;table class="table table-striped" style="font-size: 12px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variables &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; OLS_Coeff &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Expected_Sign &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Distribution &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;0.7788&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; Pricing &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; &lt;span style="     color: red !important;"&gt;-0.1087&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition_discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;"&gt;-1.8929&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition_GRPs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;"&gt;-0.0914&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TV &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;0.0383&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;0.4421&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; OOH &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;1.0649&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; Promotion &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; &lt;span style="     color: red !important;"&gt;-0.2219&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;font-weight: bold;background-color: #FFDB6D !important;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;0.6907&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+Now, here if you can see that the OLS fit yeilds two coefficients whicha re negative but they are expected to be positive. If someone is investing in a promotion variable that can not bring negative sales.
+
+---
+# Data visualization
+![](nonnegative_least_square_files/figure-html/unnamed-chunk-6-1.svg)&lt;!-- --&gt;
+From the fit chart we can see that although all the coefficients does not makes sense in terms of business but still fit is good. Here **art** of modeling comes into play. But it is possible substitute **art** of modeling by **science**.
+---
+# Optimization problem:
+
+We can think of regression a quadratic optimization problem which is a subset of convex optimization problem. In general this is an unconstrained optimization problem but it is possible to introduce some constraints in this problem as well. Some of the important constraints can be of following form,
+
+__Objective function:__
+`$$\begin{array}{ll}
+    \underset{\beta}{\mbox{minimize}} &amp; \|y - X\beta\|_2^2
+  \end{array}$$`
+
+__Constraints:__
+- `\(\hat{\beta} \ge 0\)`
+- `\(1^{\top} \times \hat{\beta} = 1\)` and `\(\hat{\beta} \ge 0\)`
+- `\(A \times \hat{\beta} &lt; 0\)` and `\(B \times \hat{\beta} \ge 0\)`
+
+Where A and B are the diagonal matrix. In A the varibles which has to be less than zero will be 1 and others will be 0. In case of B the variables which are expected to be positive will be 1 others will be zero.
+---
+# Coding:
+
+Here we are formulating the above mentioned problem in CVXR in order to get a solution. In the highlight line we are introducting the constraint that `\(\hat{\beta} \ge 0\)`. This is nothing but the non-negative least squre regression.
+
+
+```r
+beta_hat &lt;- CVXR::Variable(no_var)
+objective &lt;- CVXR::Minimize(CVXR::sum_squares(y - X %*% beta_hat))
+problem_nnls &lt;- CVXR::Problem(objective,
+*                             constraints = list(beta_hat &gt;= 0))
+result_nnls &lt;- solve(problem_nnls)
+beta_hat_nnls &lt;- result_nnls$getValue(beta_hat)
+```
+
+__Note:__
+
+This is important to check that the objective function and constraints has to be a convex function otherwise this will not work. There are many functions which are not convex but they can be transformated to be an convex function without lossing any property. 
+
+---
+# Problem setup
+In this table we have variables with their expected sign, population parameters, estimated parameters from MLE and estimates from non-negative least square regresion.
+
+&lt;table class="table table-striped" style="font-size: 8px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Variables &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; ExpectedSign &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; TrueBeta &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; OLSBeta &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; NNLSBeta &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Distribution &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7788 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pricing &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.1087 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.8929 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition GRPs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.0914 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TV &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0383 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4421 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; OOH &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0649 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6999 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Promotion &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.2219 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; + &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6907 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+This is important to note that pricing and promotion variables in the above table has different sign than what is expected. There is noway to address this problem in OLS. NNLS will yeild all `\(\hat{\beta} \ge 0\)`. From the table this is the idea case if we can put constraint like below then that will be the ideal case,
+- `\(\beta_3,\beta_4  \le 0\)`
+- `\(\beta_1,\beta_2,\beta_5,\beta_6,\beta_7,\beta_8,\beta_9  \ge 0\)`
+---
+# Visualization
+
+This chart shows `\(sales\)` and `\(\hat{sales}\)` by different methodologies. The OLS has way better fit than the NNLS. But note that there is a sign conflict in the previous table. If one choose to go with OLS then how is it possible to justify the sign of promotion and price variables which has a different sign then the expected one. 
+
+![](nonnegative_least_square_files/figure-html/unnamed-chunk-9-1.svg)&lt;!-- --&gt;
+
+---
+# Code
+In this section will impose the constraints on `\(\beta\)` so that we can get the expected sign mentioned in the table.
+
+```r
+NegativeDiag &lt;- diag(c(0,0,1,1, rep(0, 5)))
+PositiveDiag &lt;- diag(c(1,1,0,0, rep(1, 5)))
+NegativeConst &lt;- NegativeDiag %*% beta_hat &lt; 0
+PositiveConst &lt;- PositiveDiag %*% beta_hat &gt;= 0
+ProblemConst &lt;- CVXR::Problem(objective,
+*                             constraints = list(NegativeConst,
+*                                                PositiveConst))
+result_constrained &lt;- solve(ProblemConst)
+beta_hat_constrained &lt;- result_constrained$getValue(beta_hat)
+```
+If you can look in the highlighted section, we are impose the constraints on the beta coefficients.
+---
+# Visualization
+
+![](nonnegative_least_square_files/figure-html/unnamed-chunk-11-1.svg)&lt;!-- --&gt;
+
+---
+# Coefficient table
+&lt;table class="table table-striped" style="font-size: 9px; width: auto !important; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; variables &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; expected sign &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; true beta &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; beta hat ols &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; beta hat constraints &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Distribution &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7788056 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0522409 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Pricing &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.1086896 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition_discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;"&gt;FALSE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -1.8928908 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -2.0542767 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Competition_GRPs &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: red !important;"&gt;FALSE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.0914280 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.2183719 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; TV &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0383476 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0047312 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; YT &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.4420937 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.2922790 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; OOH &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0648707 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.8699730 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Promotion &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; -0.2218709 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.0000000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Discount &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; &lt;span style="     color: green !important;"&gt;TRUE&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.6907440 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.7534080 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+![](nonnegative_least_square_files/figure-html/unnamed-chunk-13-1.svg)&lt;!-- --&gt;
+---
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+background-size: 100px
+background-position: 90% 8%
+
+# Sharingan
+
+The R package name **xaringan** was derived&lt;sup&gt;1&lt;/sup&gt; from **Sharingan**, a dōjutsu in the Japanese anime _Naruto_ with two abilities:
+
+- the "Eye of Insight"
+
+- the "Eye of Hypnotism"
+
+I think a presentation is basically a way to communicate insights to the audience, and a great presentation may even "hypnotize" the audience.&lt;sup&gt;2,3&lt;/sup&gt;
+
+.footnote[
+[1] In Chinese, the pronounciation of _X_ is _Sh_ /ʃ/ (as in _shrimp_). Now you should have a better idea of how to pronounce my last name _Xie_.
+
+[2] By comparison, bad presentations only put the audience to sleep.
+
+[3] Personally I find that setting background images for slides is a killer feature of remark.js. It is an effective way to bring visual impact into your presentations.
+]
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

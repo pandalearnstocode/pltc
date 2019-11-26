@@ -1,0 +1,462 @@
+---
+title: "Application of Convex Optimization"
+subtitle: "in Marketing Mix Modeling"
+author: "Aritra Biswas"
+institute: ""
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: center, middle
+
+# Usecase of Non-negative least square in Marketing Mix Modeling
+
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/7/72/Max_paraboloid.svg)
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+library(CVXR)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(cowplot)
+library(knitr)
+library(kableExtra)
+set.seed(12)
+options(scipen = 999)
+mean_execution <- rep(10000, 9)
+std_execution <- cbind(c(1.6484, -0.2096, -0.0771, -0.4088, 0.0678, -0.6337, 0.9720, -1.2158, -1.3219),
+               c(-0.2096, 1.9274, 0.7059, 1.3051, 0.4479, 0.7384, -0.6342, 1.4291, -0.4723),
+               c(-0.0771, 0.7059, 2.5503, 0.9047, 0.9280, 0.0566, -2.5292, 0.4776, -0.4552),
+               c(-0.4088, 1.3051, 0.9047, 2.7638, 0.7607, 1.2465, -1.8116, 2.0076, -0.3377),
+               c(0.0678, 0.4479, 0.9280, 0.7607, 3.8453, -0.2098, -2.0078, -0.1715, -0.3952),
+               c(-0.6337, 0.7384, 0.0566, 1.2465, -0.2098, 2.0432, -1.0666,  1.7536, -0.1845),
+               c(0.9720, -0.6342, -2.5292, -1.8116, -2.0078, -1.0666, 4.0882,  -1.3587, 0.7287),
+               c(-1.2158, 1.4291, 0.4776, 2.0076, -0.1715, 1.7536, -1.3587, 2.8789, 0.4094),
+               c(-1.3219, -0.4723, -0.4552, -0.3377, -0.3952, -0.1845, 0.7287, 0.4094, 4.8406))
+dates_vec<- seq(as.Date('2016-01-01'),as.Date('2016-12-27'),by = 7)
+var_vec <- c("Sales","Distribution","Pricing","Competition_discount","Competition_GRPs", "TV", "YT","OOH","Promotion","Discount")
+expect_sign <- c("+","+","-","-","+","+","+","+",'+')
+```
+
+???
+
+Image credit: [Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/7/72/Max_paraboloid.svg)
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Simulation : Description
+
+Let's generate some synthetic data for analysis. Here are some of the key points we need to keep in mind during the data generation process.
+--
+
+- There is only one brand, sub-brand, geography and region is under consideration.
+
+--
+
+- Data is collected at a weekly level for one year (52 data points).
+
+--
+
+- For this analysis there will be 4 base, 4 media and 2 promotion variables.
+
+--
+
+- 3 base variables are say distribution, pricing and competition discount.
+
+--
+
+- 4 media variables are say competition GRPs, TV, YT and OOH.
+
+--
+
+- 2 promotion variables promotion and discount.
+
+--
+
+.footnote[
+[1] [Note regarding marketing mix](https://en.wikipedia.org/wiki/Marketing_mix_modeling)
+
+[2] [Various terminalogies of MMM](https://medium.com/@iamsongara/what-are-atl-btl-and-ttl-7a7053206a9a)
+]
+
+---
+# Simulation : Notation
+
+- $\boldsymbol{Y_{(p,g,t)}}$: Dependent variable with product, geography and time index. Here for this problem since we are dealing with only one region, product and geography it can be written as, $Y_{t}$.
+
+- $\boldsymbol{n}$: Number of variables under study. This includes all base, media and promotion varibles.
+
+- $\boldsymbol{m}$: Number of observations present of a variable. In this case number of weeks for which the data is available.
+
+- $\boldsymbol{X}$: Independent varible including all the variables for all the period under study. Unit vector has to be appended on if the regression line does not pass through origin.
+
+- $\boldsymbol{\beta}$: Population parameters which is unknow. Here we will assume that we know the values to simulate the synthetic data.
+
+- $\boldsymbol{\hat{\beta}_{OLS}}$: Estimated population parameters in OLS. The closed form of solution can be expressed as, ${\hat {\boldsymbol {\beta }}}=(\mathbf {X} ^{\rm {T}}\mathbf {X} )^{-1}\mathbf {X} ^{\rm {T}}\mathbf {y}$
+
+---
+# Simulation : Notation
+
+- $\boldsymbol{\hat{\beta}_{NNLS}}$: Estimated parameters $\boldsymbol{\beta}$ with constraint, $\boldsymbol{\hat{\beta}_{NNLS} \ge 0}$.
+- $\boldsymbol{\hat{\beta}_{||NNLS||_{1}}}$: Estimated parameters with constraint, $\boldsymbol{1\hat{\beta}_{NNLS}} = 1$
+
+- $\boldsymbol{\hat{\beta}_{(constrainted)}}$: Constraints enforced on estimated population parameters. Since estimated parameters are used to understand the contibution of each variables in the dependent variable, at times enforcing constraint on these may be important in terms of business justification. __For example, if competition is spending money on some tactic, the coefficient of that variable is expected to be negative.__
+
+- $\boldsymbol{\hat{Y}_{OLS}}$: Estimated values of the dependent variable using the estimated population parameters.
+
+- $\mathbf {X} \ \sim \ {\mathcal {N}}({\boldsymbol {\mu }},\,{\boldsymbol {\Sigma }})$ : Let us assume that the independent variables follow multi-variate normal distribution with parameters $\mu$ and $\Sigma$.
+
+- $e \sim N(0,\sigma)$ : Error follows normal distribution with mean $0$ and standard deviation $\sigma$.
+
+---
+# Simulation : Synthetic Data
+
+```{r}
+set.seed(12)
+# Number of base, media and promotion variables in the study
+no_var <- 9
+# Number of weeks of avaiable data
+no_obs <- 52
+# Simulating data from multi-varite normal distribution
+X <- MASS::mvrnorm(no_obs, mean_execution, std_execution)
+# Let us assume that the population parameters of the data 
+# generation process is known.
+beta <- c(0.8, 0, -2, -0.2, 0, 0.4, 1, 0, 0.7)
+# Generating dependent varible with MVN design matrix 
+# and gaussian noise.
+y <- (X %*% beta) + rnorm(no_obs, 0, 1)
+```
+
+---
+# Simulation : Data review
+
+The simulated dataset will be like this,
+
+```{r,echo=F}
+df <- data.frame(cbind(y,X)) 
+names(df) <-  gsub('_',' ',var_vec)
+row.names(df) <- as.character(dates_vec)
+df %>% 
+  round(.,0) %>% 
+  head(.,4) %>% 
+  kable(.) %>%
+  kable_styling(bootstrap_options = "striped", 
+                full_width = F,
+                position = "center",
+                font_size = 9)
+df$dates <- dates_vec
+```
+
+Note, in this data we have two competion variables and the sign of these are expected to be negative.
+
+```{r,echo=F}
+data.frame(Variables = gsub('_',' ',var_vec[-1]),
+           `ExpectedSign` = as.character(expect_sign)) %>%
+  kable(.) %>% 
+    kable_styling(bootstrap_options = "striped", 
+                full_width = F,
+                position = "center",
+                font_size = 9)
+```
+
+---
+# Simulation : Data visualization
+
+The sales vs time plot of the generated synthetic data,
+
+```{r,echo=F,fig.height=5, fig.width=9, dev='svg'}
+  df %>% 
+  as_tibble() %>% 
+  mutate(Sales = as.numeric(Sales),
+         dates = as.Date(dates)) %>% 
+  ggplot(., aes(x = dates, y = Sales)) +
+    geom_line(color = "#56B4E9") +
+    labs(title = "Observed sales vs Time",
+         x = "Weeks",
+         y = "Sales per week") +
+    theme_minimal_grid(12)
+```
+
+
+---
+
+# Problem statement:
+
+Here $\mathbf{X}$  is  $m\times n$, $\mathbf{Y}$ is  $m\times 1$, and $\mathbf{\beta}$ is $n\times 1$.
+
+Let us consider that the data generation process is as follows,
+
+$Y = X \beta + u$
+
+In order to understand the process we try to estimate the unknown parameters of the process $\beta$ by using $\hat{\beta}$. We will solve the optimization problem in order to obtained estimated values of the $\beta$ and will denote it as $\hat{\beta}$.
+
+$$\begin{array}{ll}
+    \underset{\beta}{\mbox{minimize}} & \|y - X\beta\|_2^2
+  \end{array}$$
+
+One of the ways to obtain solution for the unknown parameters are as follows,
+
+$\hat{\beta}_{OLS} = (X^{\top }X)^{-1}X^{\top }Y$
+
+but the objective function is an convex function so this problem can be solved using convex optimization as well. So, we will try to solve this problem from analytical and numerical point of view and try to compare them in this study.
+
+---
+# Calculating $\hat{\beta}$ using analytical solution
+
+As we know, $\hat{\beta}_{OLS} = (X^{\top }X)^{-1}X^{\top }Y$
+
+```{r,echo=F}
+data.frame(
+  Variables = var_vec[-1],
+  OLS_Coeff = round(as.numeric((solve(t(X)%*%X)%*%t(X))%*%y),4),
+  Expected_Sign = as.character(expect_sign))%>% 
+  mutate(OLS_Coeff = cell_spec(OLS_Coeff, "html", color = ifelse(OLS_Coeff >= 0, "green", "red"))) %>% 
+  kable(format = "html", escape = F) %>% 
+  kable_styling(bootstrap_options = "striped", 
+                full_width = F, 
+                position = "center",
+                font_size = 12
+                ) %>% 
+  row_spec(c(2,8), bold = T, background = "#FFDB6D")
+```
+
+Now, here if you can see that the OLS fit yeilds two coefficients whicha re negative but they are expected to be positive. If someone is investing in a promotion variable that can not bring negative sales.
+
+---
+# Data visualization
+```{r,echo=F,fig.height=5, fig.width=9, dev='svg'}
+data.frame(
+  Dates = dates_vec,
+  Sales = y,
+  Pred_Sales = round(as.numeric(X%*%(solve(t(X)%*%X)%*%t(X))%*%y),4)) %>% 
+  as_tibble() %>% 
+  gather(Sales:Pred_Sales, key = "Type", value = "Sales") %>% 
+  mutate(Type = as.factor(gsub('_',' ',Type))) %>% 
+  ggplot(., aes(x = Dates, y = Sales,colour=Type,group=Type)) +
+  geom_line() +
+  labs(title = "Observed Sales, Predicted Sales (OLS) Vs. Time",
+     x = "Weeks",
+     y = "Sales per week") +
+  theme_minimal_grid(12)
+```
+From the fit chart we can see that although all the coefficients does not makes sense in terms of business but still fit is good. Here **art** of modeling comes into play. But it is possible substitute **art** of modeling by **science**.
+---
+# Optimization problem:
+
+We can think of regression a quadratic optimization problem which is a subset of convex optimization problem. In general this is an unconstrained optimization problem but it is possible to introduce some constraints in this problem as well. Some of the important constraints can be of following form,
+
+__Objective function:__
+$$\begin{array}{ll}
+    \underset{\beta}{\mbox{minimize}} & \|y - X\beta\|_2^2
+  \end{array}$$
+
+__Constraints:__
+- $\hat{\beta} \ge 0$
+- $1^{\top} \times \hat{\beta} = 1$ and $\hat{\beta} \ge 0$
+- $A \times \hat{\beta} < 0$ and $B \times \hat{\beta} \ge 0$
+
+Where A and B are the diagonal matrix. In A the varibles which has to be less than zero will be 1 and others will be 0. In case of B the variables which are expected to be positive will be 1 others will be zero.
+---
+# Coding:
+
+Here we are formulating the above mentioned problem in CVXR in order to get a solution. In the highlight line we are introducting the constraint that $\hat{\beta} \ge 0$. This is nothing but the non-negative least squre regression.
+
+```{r tidy=FALSE}
+beta_hat <- CVXR::Variable(no_var)
+objective <- CVXR::Minimize(CVXR::sum_squares(y - X %*% beta_hat))
+problem_nnls <- CVXR::Problem(objective,
+                              constraints = list(beta_hat >= 0)) #<<
+result_nnls <- solve(problem_nnls)
+beta_hat_nnls <- result_nnls$getValue(beta_hat)
+```
+
+__Note:__
+
+This is important to check that the objective function and constraints has to be a convex function otherwise this will not work. There are many functions which are not convex but they can be transformated to be an convex function without lossing any property. 
+
+---
+# Problem setup
+In this table we have variables with their expected sign, population parameters, estimated parameters from MLE and estimates from non-negative least square regresion.
+
+```{r,echo=F}
+data.frame(Variables = gsub('_',' ',var_vec[-1]),
+           `ExpectedSign` = as.character(expect_sign),
+           TrueBeta = beta,
+           OLSBeta = round(as.numeric((solve(t(X)%*%X)%*%t(X))%*%y),4),
+           NNLSBeta = round(beta_hat_nnls,4)) %>%
+  kable(.) %>% 
+    kable_styling(bootstrap_options = "striped", 
+                full_width = F,
+                position = "center",
+                font_size = 8)
+```
+This is important to note that pricing and promotion variables in the above table has different sign than what is expected. There is noway to address this problem in OLS. NNLS will yeild all $\hat{\beta} \ge 0$. From the table this is the idea case if we can put constraint like below then that will be the ideal case,
+- $\beta_3,\beta_4  \le 0$
+- $\beta_1,\beta_2,\beta_5,\beta_6,\beta_7,\beta_8,\beta_9  \ge 0$
+---
+# Visualization
+
+This chart shows $sales$ and $\hat{sales}$ by different methodologies. The OLS has way better fit than the NNLS. But note that there is a sign conflict in the previous table. If one choose to go with OLS then how is it possible to justify the sign of promotion and price variables which has a different sign then the expected one. 
+
+```{r,echo=F,fig.height=4, fig.width=8, dev='svg'}
+data.frame(
+  Dates = dates_vec,
+  Sales = y,
+  OLS_Sales = round(as.numeric(X%*%(solve(t(X)%*%X)%*%t(X))%*%y),4),
+  NNLS_Sales = round(X%*%beta_hat_nnls,4)) %>% 
+  as_tibble() %>% 
+  gather(Sales:NNLS_Sales, key = "Type", value = "Sales") %>% 
+  mutate(Type = as.factor(gsub('_',' ',Type))) %>%  
+  ggplot(., aes(x = Dates, y = Sales,colour=Type,group=Type)) +
+  geom_line() +
+  labs(title = "Sales (Predicted,OLS and NNLS) Vs. Time",
+  x = "Weeks",
+  y = "Sales per week") +
+  theme_minimal_grid(10)
+```
+
+---
+# Code
+In this section will impose the constraints on $\beta$ so that we can get the expected sign mentioned in the table.
+```{r tidy=FALSE}
+NegativeDiag <- diag(c(0,0,1,1, rep(0, 5)))
+PositiveDiag <- diag(c(1,1,0,0, rep(1, 5)))
+NegativeConst <- NegativeDiag %*% beta_hat < 0
+PositiveConst <- PositiveDiag %*% beta_hat >= 0
+ProblemConst <- CVXR::Problem(objective,
+                              constraints = list(NegativeConst,  #<<
+                                                 PositiveConst)) #<<
+result_constrained <- solve(ProblemConst)
+beta_hat_constrained <- result_constrained$getValue(beta_hat)
+```
+If you can look in the highlighted section, we are impose the constraints on the beta coefficients.
+---
+# Visualization
+
+```{r,echo=F,fig.height=5, fig.width=9, dev='svg'}
+ CLS_plot <- data.frame(
+  Dates = dates_vec,
+  Sales = y,
+  Constrainted_Sales = round(X%*%beta_hat_constrained,4)) %>% 
+  as_tibble() %>% 
+  gather(Sales:Constrainted_Sales, key = "Type", value = "Sales") %>% 
+  mutate(Type = as.factor(gsub('_',' ',Type))) %>% 
+  ggplot(., aes(x = Dates, y = Sales,colour=Type,group=Type)) +
+  geom_line() +
+  labs(title = "Sales (Predicted and Constrainted) Vs. Time",
+  x = "Weeks",
+  y = "Sales per week") +
+  theme_minimal_grid(7) 
+NNLS_plot <- data.frame(
+  Dates = dates_vec,
+  Sales = y,
+  NNLS_Sales = round(X%*%beta_hat_nnls,4)) %>% 
+  as_tibble() %>% 
+  gather(Sales:NNLS_Sales, key = "Type", value = "Sales") %>% 
+  mutate(Type = as.factor(gsub('_',' ',Type))) %>% 
+  ggplot(., aes(x = Dates, y = Sales,colour=Type,group=Type)) +
+  geom_line() +
+  labs(title = "Sales (Predicted and NNLS) Vs. Time",
+  x = "Weeks",
+  y = "Sales per week") +
+  theme_minimal_grid(7) 
+OLS_plot <- data.frame(
+  Dates = dates_vec,
+  Sales = y,
+  OLS_Sales = round(as.numeric(X%*%(solve(t(X)%*%X)%*%t(X))%*%y),4)) %>% 
+  as_tibble() %>% 
+  gather(Sales:OLS_Sales, key = "Type", value = "Sales") %>% 
+  mutate(Type = as.factor(gsub('_',' ',Type))) %>% 
+  ggplot(., aes(x = Dates, y = Sales,colour=Type,group=Type)) +
+  geom_line() +
+  labs(title = "Sales (Predicted and OLS) Vs. Time",
+  x = "Weeks",
+  y = "Sales per week") +
+  theme_minimal_grid(7)
+plot_grid(OLS_plot,NNLS_plot, CLS_plot,nrow = 3)
+```
+
+---
+# Coefficient table
+```{r,echo=F}
+data.frame(
+  variables = var_vec[-1],
+  expected_sign = cell_spec(as.character(expect_sign) == "+",
+                  "html",
+                  color = ifelse(as.character(expect_sign) == "+", 
+                                 "green", 
+                                 "red")),
+  true_beta = beta,
+  beta_hat_OLS = (solve(t(X)%*%X)%*%t(X))%*%y,
+  beta_hat_constraints = beta_hat_constrained) %>% 
+  setNames(tolower(gsub("_"," ",names(.)))) %>% 
+  kable(format = "html", escape = F)  %>% 
+  kable_styling(bootstrap_options = "striped", 
+            full_width = F,
+            position = "center",
+            font_size = 9)
+```
+
+---
+```{r,echo=F,fig.height=5, fig.width=10, dev='svg'}
+data.frame(
+    Variables = var_vec[-1],
+    true_beta = beta,
+    beta_hat_OLS = (solve(t(X)%*%X)%*%t(X))%*%y,
+    beta_hat_constraints = beta_hat_constrained
+    ) %>% 
+  as_tibble() %>% 
+  gather(true_beta:beta_hat_constraints, key = "Types", value = "Coefficients") %>% 
+  mutate(Types = as.factor(gsub('_',' ',Types)),
+         Variables = as.factor(gsub('_',' ',Variables))) %>% 
+  ggplot(., aes(fill=Types, y=Coefficients, x=Variables)) + 
+  geom_bar(position="dodge", stat="identity")+
+  labs(title = "Coeff Comparison between true, OLS and constraint betas",
+  x = "Variables",
+  y = "Coefficients") +
+  theme_minimal_grid(8)
+```
+---
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+background-size: 100px
+background-position: 90% 8%
+
+# Sharingan
+
+The R package name **xaringan** was derived<sup>1</sup> from **Sharingan**, a dōjutsu in the Japanese anime _Naruto_ with two abilities:
+
+- the "Eye of Insight"
+
+- the "Eye of Hypnotism"
+
+I think a presentation is basically a way to communicate insights to the audience, and a great presentation may even "hypnotize" the audience.<sup>2,3</sup>
+
+.footnote[
+[1] In Chinese, the pronounciation of _X_ is _Sh_ /ʃ/ (as in _shrimp_). Now you should have a better idea of how to pronounce my last name _Xie_.
+
+[2] By comparison, bad presentations only put the audience to sleep.
+
+[3] Personally I find that setting background images for slides is a killer feature of remark.js. It is an effective way to bring visual impact into your presentations.
+]
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
