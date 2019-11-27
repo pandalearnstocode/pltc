@@ -1,8 +1,8 @@
 [chekun]
-  title = "chekun's blog"
+  title = "Documentation"
   link = "https://chekun.me"
-  avatar = "/media/links/chekun.jpg"
-  description = "A full-stack developer"
+  avatar = "/media/links/xaringan.png"
+  description = "Use of Convex Optimization in MMM"
 
 [wangbo]
   title = "Boof Wang"
