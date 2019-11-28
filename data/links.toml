@@ -11,10 +11,10 @@
   description = "NDA Vs.UPA content in national media"
 
 [yuanxuxu]
-  title = "Ryan's blog"
-  link = "https://yuanxuxu.com/"
-  avatar = "/media/links/yuanxuxu.jpg"
-  description = "A interesting developer"
+  title = "R + Raspberry Pi"
+  link = "https://rpubs.com/itheta/197242"
+  avatar = "/media/links/R.png"
+  description = "Taskscheduler and Crontab with R"
 
 [candisheng]
   title = "Rmarkdown"
