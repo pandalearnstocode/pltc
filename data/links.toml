@@ -5,10 +5,10 @@
   description = "Use of Convex Optimization in MMM"
 
 [wangbo]
-  title = "Boof Wang"
-  link = "http://boof.wang"
-  avatar = "/media/links/wangbo.jpg"
-  description = "Another full-stack developer"
+  title = "Shiny"
+  link = "https://aritra.shinyapps.io/INCapp/"
+  avatar = "/media/links/shiny.png"
+  description = "NDA Vs.UPA content in national media"
 
 [yuanxuxu]
   title = "Ryan's blog"
