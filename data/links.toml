@@ -5,7 +5,7 @@
   description = "Use of Convex Optimization in MMM"
 
 [wangbo]
-  title = "Shiny"
+  title = "Shiny + htmlwidgets"
   link = "https://aritra.shinyapps.io/INCapp/"
   avatar = "/media/links/shiny.png"
   description = "NDA Vs.UPA content in national media"
