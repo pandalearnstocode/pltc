@@ -3,15 +3,9 @@ date: "2014-04-09"
 layout: about
 ---
 
-Hugo is a static site engine written in Go.
+Hi! I’m Aritra Biswas. By education, I am a Statistician (Data Scientist in millennial lingo). I work for The Nielsen Company. I develop analytical products that make market research easier, faster. I am from Calcutta but currently living in Bangalore, India. Outside of work, I love to travel, read and write blog about various things.
 
+![][https://pandalearnstocode.in/aboutme/aboutme.jpg]
 
-It makes use of a variety of open source projects including:
-
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+I have one package about YouTube text data in R, but I currently don’t have a time to update, document and host it in CRAN. I might find a way around that in the future. If anyone is interested in contributing to that or any other open source project please feel free to reach out to me at [pandalearnstocode@gmail.com](mailto:pandalearnstocode@gmail.com)
 
