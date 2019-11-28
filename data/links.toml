@@ -1,5 +1,5 @@
 [chekun]
-  title = "Documentation"
+  title = "Xaringan"
   link = "https://pandalearnstocode.in/convex_optimization/nonnegative_least_square.html"
   avatar = "/media/links/xaringan.png"
   description = "Use of Convex Optimization in MMM"
@@ -17,7 +17,7 @@
   description = "A interesting developer"
 
 [candisheng]
-  title = "Kan Disheng"
-  link = "http://www.kandisheng.com/"
-  avatar = "/media/links/kandisheng.jpg"
-  description = "A crazy developer"
+  title = "Rmarkdown"
+  link = "https://pandalearnstocode.in/handouts/KS_handout_2k17.pdf"
+  avatar = "/media/links/knitr.png"
+  description = "R knowledge sharing"
