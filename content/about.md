@@ -2,7 +2,7 @@
 date: "2014-04-09"
 layout: about
 ---
-
+# About Me
 Hi! I’m Aritra Biswas. By education, I am a Statistician (Data Scientist in millennial lingo). I work for The Nielsen Company. I develop analytical products that make market research easier, faster. I am from Calcutta but currently living in Bangalore, India. Outside of work, I love reading, traveling and blogging. 
 
 ![](https://pandalearnstocode.in/aboutme/aboutme.jpg)
