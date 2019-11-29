@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sun, 25 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tutorial: Quick EDA in Python using Pandas Profiling</title>
+      <link>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</guid>
+      <description>&lt;p&gt;EDA is one of the most important part of any data science work. Recently I have came accross a library called pandas profiling which makes it easier and creates a beautiful shareable report. So, here I am sharing some resouces related to  the project which I feel can be useful.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Docker for Data Science</title>

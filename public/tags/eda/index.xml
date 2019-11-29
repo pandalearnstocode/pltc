@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Eda on Panda Learns To Code</title>
+    <link>/tags/eda/</link>
+    <description>Recent content in Eda on Panda Learns To Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Fri, 29 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/eda/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tutorial: Quick EDA in Python using Pandas Profiling</title>
+      <link>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</link>
+      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</guid>
+      <description>&lt;p&gt;EDA is one of the most important part of any data science work. Recently I have came accross a library called pandas profiling which makes it easier and creates a beautiful shareable report. So, here I am sharing some resouces related to  the project which I feel can be useful.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
