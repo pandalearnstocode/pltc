@@ -49,8 +49,9 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
 # Add your own params here
 [params]
   author = "Aritra Biswas"
-  bg = ""
+  bg = "images/grey-prism.svg"
   avatar = "images/aritra-biswas.png"
+  favicon = "images/icons8-panda-100.png"
   seotitle = "Panda Learns To Code"
   subtitle = "~ Stay Hungry Stay Foolish ~"
   description = "Hi! I'm Aritra Biswas, Data Scientist at Nielsen. I build products to make life easier. I like programming. I am from Calcutta but I currently live in Bangalore, India"
