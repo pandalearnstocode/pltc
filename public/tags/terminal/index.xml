@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Terminal on Panda Learns To Code</title>
+    <link>/tags/terminal/</link>
+    <description>Recent content in Terminal on Panda Learns To Code</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
+    <lastBuildDate>Sat, 30 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Record and share terminal session using Terminalizer</title>
+      <link>/post/record-and-share-terminal-session-using-terminalizer/</link>
+      <pubDate>Sat, 30 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/record-and-share-terminal-session-using-terminalizer/</guid>
+      <description>&lt;p&gt;There are great open-source tools are available to record screen. I personally like &lt;a href=&#34;https://www.loom.com/&#34;&gt;loom&lt;/a&gt; and google hangout. All of these are good. But I recently came across Terminalizer to record the terminal session. It is easy to set up and use. Here in this session, I will quickly demo how I use this tool for document creation and sharing.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

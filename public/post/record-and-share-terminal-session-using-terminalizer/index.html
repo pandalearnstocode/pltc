@@ -229,7 +229,7 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Record and share terminal session using Terminalizer</h1>
-      <p class="post-meta">@Aritra Biswas · Nov 30, 2019 · 1 min read</p>
+      <p class="post-meta">@Aritra Biswas · Nov 30, 2019 · 2 min read</p>
     </header>
     <article class="post-content"><p>There are great open-source tools are available to record screen. I personally like <a href="https://www.loom.com/">loom</a> and google hangout. All of these are good. But I recently came across Terminalizer to record the terminal session. It is easy to set up and use. Here in this session, I will quickly demo how I use this tool for document creation and sharing.</p>
 
@@ -253,12 +253,49 @@
 
 <h3 id="gif-compression">gif compression</h3>
 
-<p>If one is planning to use these gifs in website it is a good idea to compress the gifs before uploading. <a href="https://gifcompressor.com/">This</a> site is useful for compression.</p></article>
+<p>If one is planning to use these gifs in website it is a good idea to compress the gifs before uploading. <a href="https://gifcompressor.com/">This</a> site is useful for compression.</p>
+
+<h3 id="httpie-aitch-tee-tee-pie">HTTPie—aitch-tee-tee-pie</h3>
+
+<p>The official website for this project can be found <a href="https://httpie.org/">here</a>. If you are in Mac you can use the following command from terminal to install this tool:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">brew install httpie</code></pre></div>
+<h3 id="test-httpie-and-terminalizer-with-a-fastapi-hello-world-app">Test HTTPie and Terminalizer with a FastAPI Hello World App</h3>
+
+<p>Here is the app which we are going to use for the demo,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Import dependencies</span>
+<span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
+<span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+<span style="color:#75715e"># Define App</span>
+app <span style="color:#f92672">=</span> FastAPI()
+<span style="color:#75715e"># Define request body class</span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Name</span>(BaseModel):
+    name: str
+<span style="color:#75715e"># Define Endpoint</span>
+<span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/name/&#34;</span>)
+async <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">name_return</span>(name:Name):
+    <span style="color:#66d9ef">return</span> name</code></pre></div>
+<p>To start the app use the following command from commandline,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip3 install virtualenv
+python3 -m virtualenv
+source ./bin/activate
+pip3 install uvicorn pydantic fastapi<span style="color:#f92672">[</span>all<span style="color:#f92672">]</span>
+uvicorn main:app --reload</code></pre></div>
+<p>If the app is up, you check the the Swagger UI <a href="http://localhost:8000/docs">here</a>. This should look like this,</p>
+
+<p><img src="/img/python_img/swaggerui.jpg" alt="" /></p>
+
+<p>To make a <code>POST</code> call to the API one can use Httpie from terminal by using the following command,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">http POST localhost:8000/name/ name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Aritra Biswas&#39;</span></code></pre></div>
+<p>The output of this will look like,</p>
+
+<p><img src="/img/python_img/httpie_mini.gif" alt="" /></p></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
         
           <li><a href="/tags/documentation"><span class="tag">Documentation</span></a></li>
+        
+          <li><a href="/tags/terminal"><span class="tag">Terminal</span></a></li>
         
       </ul>
       
