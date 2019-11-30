@@ -113,8 +113,9 @@ conda deactivate
 
 ![](/img/python_img/pandas_profiling_6.jpg)
 
+Here are couple of resources which was useful for creating this blog post and [jupyter notebook](/notebooks/One line EDA using Pandas Profiling.ipynb).
 
-### Reference
+### References
 
 * [Speed Up Your Exploratory Data Analysis With Pandas-Profiling](https://towardsdatascience.com/speed-up-your-exploratory-data-analysis-with-pandas-profiling-88b33dc53625)
 * [Pandas Profiling Official Doc](https://pandas-profiling.github.io/pandas-profiling/docs/)
