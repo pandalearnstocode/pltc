@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Fri, 29 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Record and share terminal session using Terminalizer</title>
+      <link>/post/record-and-share-terminal-session-using-terminalizer/</link>
+      <pubDate>Sat, 30 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/record-and-share-terminal-session-using-terminalizer/</guid>
+      <description>&lt;p&gt;There are great open-source tools are available to record screen. I personally like &lt;a href=&#34;https://www.loom.com/&#34;&gt;loom&lt;/a&gt; and google hangout. All of these are good. But I recently came across Terminalizer to record the terminal session. It is easy to set up and use. Here in this session, I will quickly demo how I use this tool for document creation and sharing.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Tutorial: Quick EDA in Python using Pandas Profiling</title>
