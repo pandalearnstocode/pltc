@@ -55,7 +55,7 @@ copyright = "© This post is licensed under a Creative Commons Attribution-NonCo
   seotitle = "Panda Learns To Code"
   subtitle = "~ Stay Hungry Stay Foolish ~"
   description = "Hi! I'm Aritra Biswas, Data Scientist at Nielsen. I build products to make life easier. I like programming. I am from Calcutta but I currently live in Bangalore, India"
-  paginate = 10
+  paginate = 20
 
   # Choose your social networks
   email = "pandalearnstocode@gmail.com"
