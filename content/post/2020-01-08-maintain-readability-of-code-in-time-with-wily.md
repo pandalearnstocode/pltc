@@ -1,5 +1,5 @@
 ---
-title: Maintain readability of code in time with Wily
+title: Maintain readability of code in time with Wily
 author: Aritra Biswas
 date: '2020-01-08'
 slug: maintain-readability-of-code-in-time-with-wily
