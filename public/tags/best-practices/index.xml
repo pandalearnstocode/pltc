@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Python on Panda Learns To Code</title>
-    <link>/tags/python/</link>
-    <description>Recent content in Python on Panda Learns To Code</description>
+    <title>Best Practices on Panda Learns To Code</title>
+    <link>/tags/best-practices/</link>
+    <description>Recent content in Best Practices on Panda Learns To Code</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
     <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/python/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/best-practices/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,15 +21,6 @@
       <description>&lt;h3 id=&#34;maintainability-code-with-wily&#34;&gt;Maintainability code with Wily&lt;/h3&gt;
 
 &lt;p&gt;Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Tutorial: Quick EDA in Python using Pandas Profiling</title>
-      <link>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</link>
-      <pubDate>Fri, 29 Nov 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/tutorial-quick-eda-in-python-using-pandas-profiling/</guid>
-      <description>&lt;p&gt;EDA is one of the most important part of any data science work. Recently I have came accross a library called pandas profiling which makes it easier and creates a beautiful shareable report. So, here I am sharing some resouces related to  the project which I feel can be useful.&lt;/p&gt;</description>
     </item>
     
   </channel>

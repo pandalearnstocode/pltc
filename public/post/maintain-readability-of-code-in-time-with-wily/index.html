@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Maintain readability of code in time with Wily</title>
+
+  
+  
+  <link href="//cdn.jsdelivr.net" rel="dns-prefetch">
+  <link href="//cdnjs.cloudflare.com" rel="dns-prefetch">
+  
+  <link href="//at.alicdn.com" rel="dns-prefetch">
+  
+  <link href="//fonts.googleapis.com" rel="dns-prefetch">
+  <link href="//fonts.gstatic.com" rel="dns-prefetch">
+  
+  
+  
+  
+  
+
+  
+
+  
+  <meta name="author" content="Aritra Biswas">
+  <meta name="description" content="Maintainability code with Wily Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.
+">
+
+  
+  
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@pdlearnstocode">
+    <meta name="twitter:title" content="Maintain readability of code in time with Wily">
+    <meta name="twitter:description" content="Maintainability code with Wily Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.
+">
+    <meta name="twitter:image" content="/img/python_img/wily.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Maintain readability of code in time with Wily">
+  <meta property="og:description" content="Maintainability code with Wily Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.
+">
+  <meta property="og:url" content="/post/maintain-readability-of-code-in-time-with-wily/">
+  <meta property="og:image" content="/img/python_img/wily.png">
+
+
+
+
+<meta name="generator" content="Hugo 0.53">
+
+
+<link rel="canonical" href="/post/maintain-readability-of-code-in-time-with-wily/">
+
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta http-equiv="Cache-Control" content="no-transform">
+
+
+<meta name="robots" content="index,follow">
+<meta name="referrer" content="origin-when-cross-origin">
+
+
+
+
+
+
+
+<meta name="theme-color" content="#02b875">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Panda Learns To Code">
+<meta name="msapplication-tooltip" content="Panda Learns To Code">
+<meta name='msapplication-navbutton-color' content="#02b875">
+<meta name="msapplication-TileColor" content="#02b875">
+<meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+<link rel="icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32x32.png">
+<link rel="icon" sizes="192x192" href="/icons/icon-192x192.png">
+<link rel="apple-touch-icon" href="/icons/icon-152x152.png">
+<link rel="manifest" href="/manifest.json">
+
+
+<link rel="preload" href="/styles/main-rendered.min.css" as="style">
+
+
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lobster" as="style">
+<link rel="preload" href="/images/aritra-biswas.png" as="image">
+<link rel="preload" href="/images/grey-prism.svg" as="image">
+
+
+<style>
+  body {
+    background: rgb(244, 243, 241) url('/images/grey-prism.svg') repeat fixed;
+  }
+</style>
+<link rel="stylesheet" href="/styles/main-rendered.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.2/dist/medium-zoom.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video-js.min.css">
+
+
+
+  
+  
+<!--[if lte IE 8]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-ie8@1.1.2/dist/videojs-ie8.min.js"></script>
+<![endif]-->
+
+<!--[if lte IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/eligrey-classlist-js-polyfill@1.2.20180112/classList.min.js"></script>
+<![endif]-->
+
+
+</head>
+  <body>
+    <div class="suspension">
+      <a role="button" aria-label="Go to top" title="Go to top" class="to-top is-hide"><span class="icon icon-up" aria-hidden="true"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a href="/"><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
+  
+  <h2 class="title"><a href="/">Panda Learns To Code</a></h2>
+  
+  <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
+  <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
+    <span class="icon icon-menu" aria-hidden="true"></span>
+  </button>
+
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item
+          
+          
+           is-active">
+          <a href="/">Home</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/about/">About</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/projects/">Work</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/resume/aritrabiswas_resume.pdf">CV</a>
+        </li>
+      
+        <li class="menu-item
+          
+          
+          ">
+          <a href="/tags/">Tags</a>
+        </li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list"><li class="social-item">
+          <a href="mailto:pandalearnstocode@gmail.com" title="Email" aria-label="Email">
+            <span class="icon icon-email" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//github.com/pandalearnstocode" rel="me" title="GitHub" aria-label="GitHub">
+	    <span class="icon icon-github" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//twitter.com/pdlearnstocode" rel="me" title="Twitter" aria-label="Twitter">
+            <span class="icon icon-twitter" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.instagram.com/pdlearns2code" rel="me" title="Instagram" aria-label="Instagram">
+            <span class="icon icon-instagram" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.youtube.com/channel/UCd3o4IJUJSmOFr6kHv6Y3vw" rel="me" title="YouTube" aria-label="YouTube">
+            <span class="icon icon-youtube" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//stackoverflow.com/users/9984132/pandalearnstocode" rel="me" title="Stack Overflow"  aria-label="Stack Overflow">
+            <span class="icon icon-stackoverflow" aria-hidden="true"></span>
+          </a>
+        </li><li class="social-item">
+          <a href="//www.linkedin.com/in/pandalearnstocode" rel="me" title="LinkedIn" aria-label="LinkedIn">
+            <span class="icon icon-linkedin" aria-hidden="true"></span>
+          </a>
+        </li></ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Maintain readability of code in time with Wily</h1>
+      <p class="post-meta">@Aritra Biswas · Jan 8, 2020 · 4 min read</p>
+    </header>
+    <article class="post-content"><h3 id="maintainability-code-with-wily">Maintainability code with Wily</h3>
+
+<p>Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.</p>
+
+<h3 id="project-directory-structure">Project directory structure</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
+├── README.md
+├── __init__.py
+├── easy_functions.py
+├── difficult_functions.py
+└── wily_report
+    ├── css
+    │   └── main.css
+    ├── graph.htm
+    └── index.html</code></pre></div>
+<h3 id="create-a-virtual-environment">Create a virtual environment</h3>
+
+<p>Create a new environment to install all the libraries required.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create --name wily_envs
+conda activate wily_envs</code></pre></div>
+<p>Activate the environment and install the required libraries.</p>
+
+<h3 id="install-wily">Install Wily</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install wily pre-commit</code></pre></div>
+<h3 id="initalise-git-in-the-folder">Initalise git in the folder</h3>
+
+<p>After installing the dependency, initalise the folder with git and make inital commit</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git init
+git add .
+git commit -m <span style="color:#e6db74">&#34;inital commit.&#34;</span></code></pre></div>
+<h3 id="write-python-function-in-a-file">Write Python function in a file</h3>
+
+<p>Create a Python file say, <code>easy_functions.py</code>. Define the following function like,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">easy_function</span>(a, b):
+    <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+        c <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+    <span style="color:#66d9ef">return</span> c</code></pre></div>
+<p>Now, create anoter file called <code>difficult_functions.py</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">difficult_function</span>(a, b):
+    <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+        <span style="color:#66d9ef">if</span> b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+            <span style="color:#66d9ef">if</span> isinstance(a,int):
+                <span style="color:#66d9ef">if</span> isinstance(b,int):
+                    c <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
+                    <span style="color:#66d9ef">return</span> c
+                <span style="color:#66d9ef">else</span>:
+                    <span style="color:#66d9ef">pass</span>
+            <span style="color:#66d9ef">else</span>:
+                <span style="color:#66d9ef">pass</span>
+        <span style="color:#66d9ef">else</span>:
+            <span style="color:#66d9ef">pass</span>
+    <span style="color:#66d9ef">else</span>:
+        <span style="color:#66d9ef">pass</span></code></pre></div>
+<p>Add files in the git staging area.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
+git commit -m <span style="color:#e6db74">&#34;adding new files and functions in the staging area.&#34;</span></code></pre></div>
+<h3 id="check-and-create-wily-report">Check and create Wily report</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># For help</span>
+wily --help
+<span style="color:#75715e"># To build report for all the functions in the current directory</span>
+wily build .
+<span style="color:#75715e"># Generate function-wise report</span>
+wily report easy_functions.py
+wily report difficult_functions.py
+<span style="color:#75715e"># Index all the function</span>
+wily index
+<span style="color:#75715e"># Rank all the functions</span>
+wily rank .
+<span style="color:#75715e"># Check difference between last and current commit</span>
+wily diff . -r HEAD^1
+<span style="color:#75715e"># Check all the present matricies</span>
+wily list-metrics
+<span style="color:#75715e"># Generate a HTML report for the exiting functions</span>
+wily report --format HTML .</code></pre></div>
+<p>The generated graph for the functions will look like <a href="https://pandalearnstocode.in/wily_graph_report/wily-report.html">this</a>.</p>
+
+<h3 id="generate-wily-graph">Generate Wily graph</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wily graph . raw.loc
+wily graph easy_functions.py loc</code></pre></div>
+<p>The graph for the function&rsquo;s complexicity will be plotted in the generated report and this will look like <a href="https://pandalearnstocode.in/wily_report/index.html">this</a>.
+This can be done for a function or a directory.</p>
+
+<h3 id="integrate-with-per-commit-web-hook">Integrate with per-commit web hook</h3>
+
+<p>There is a pre-commit hook and azure pipelines defined for this tool which can be implimented for CI.</p>
+
+<h4 id="pre-commit-plugin">pre-commit plugin</h4>
+
+<p>Create a file called, <code>.pre-commit-config.yaml</code>.</p>
+
+<p>The content of the file can be as follows,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">repos:
+-   repo: local
+    hooks:
+    -   id: wily
+        name: wily
+        entry: wily diff
+        verbose: true
+        language: python
+        additional_dependencies: <span style="color:#f92672">[</span>wily<span style="color:#f92672">]</span></code></pre></div>
+<p>Similarly an Azure pipeline can be defined as follows,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- script: |
+  pip install wily
+  wily build src/
+  displayName: Install Wily and compile cache
+- script: <span style="color:#e6db74">&#34;wily diff src/ -r HEAD^1&#34;</span>
+  displayName: Compare previous commit</code></pre></div>
+<p>After saving check that the <code>pre-commit</code> library is installed or not using,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pre-commit --version</code></pre></div>
+<p>Install the pre-commit hook for the respective directory,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pre-commit install
+pre-commit run --all-files
+git add .
+git commit -m <span style="color:#e6db74">&#34;commit after installing pre-commit hook&#34;</span>
+conda deactivate</code></pre></div>
+<p>After this point the repo should be enabled with Wily.</p>
+
+<h3 id="take-a-informaed-decesion">Take a informaed decesion</h3>
+
+<p>To simplify our life Wily provides us a MI which stands for code maintainablity index. If the index is in between 50 to 75, it needs improvement but anything less than 50 is not acceptable. Most of the companies like Microsoft and Java maintain there MI between 75 to 100.</p>
+
+<h2 id="references">References</h2>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=dqdsNoApJ80">Pycon 2019 : Wily Python: Writing simpler and more maintainable Python</a></li>
+<li><a href="https://speakerdeck.com/pycon2019/anthony-shaw-wily-python-writing-simpler-and-more-maintainable-python">Anthony Shaw - Wily Python: Writing simpler and more maintainable Python</a></li>
+<li><a href="https://realpython.com/python-refactoring/">Refactoring in Python</a></li>
+</ul></article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/code-quality"><span class="tag">Code Quality</span></a></li>
+        
+          <li><a href="/tags/python"><span class="tag">Python</span></a></li>
+        
+          <li><a href="/tags/best-practices"><span class="tag">Best Practices</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  
+<footer class="site-footer">
+  <p>© 2017-2020 Panda Learns To Code</p>
+  <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
+  
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/smooth-scroll@15.0.0/dist/smooth-scroll.min.js"></script>
+
+
+
+<script async src="https://cdn.jsdelivr.net/npm/video.js@7.3.0/dist/video.min.js"></script>
+
+
+
+
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    },
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+
+
+<script src="/scripts/index.min.js"></script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('\/service-worker.js').then(function() {
+      console.log('[ServiceWorker] Registered');
+    });
+  }
+</script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

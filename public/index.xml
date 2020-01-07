@@ -22,6 +22,17 @@
     </item>
     
     <item>
+      <title>Maintain readability of code in time with Wily</title>
+      <link>/post/maintain-readability-of-code-in-time-with-wily/</link>
+      <pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/maintain-readability-of-code-in-time-with-wily/</guid>
+      <description>&lt;h3 id=&#34;maintainability-code-with-wily&#34;&gt;Maintainability code with Wily&lt;/h3&gt;
+
+&lt;p&gt;Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Record and share terminal session using Terminalizer</title>
       <link>/post/record-and-share-terminal-session-using-terminalizer/</link>
       <pubDate>Sat, 30 Nov 2019 00:00:00 +0000</pubDate>
