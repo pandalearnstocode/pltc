@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Panda Learns To Code</title>
@@ -19,7 +19,6 @@
       
       <guid>/post/maintain-readability-of-code-in-time-with-wily/</guid>
       <description>&lt;h3 id=&#34;maintainability-code-with-wily&#34;&gt;Maintainability code with Wily&lt;/h3&gt;
-
 &lt;p&gt;Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.&lt;/p&gt;</description>
     </item>
     
@@ -66,15 +65,15 @@
       
       <guid>/post/python-type-checking-using-mypy/</guid>
       <description>&lt;h1 id=&#34;type-checking-in-python&#34;&gt;Type checking in Python&lt;/h1&gt;
-
 &lt;h2 id=&#34;python-is-strongly-dynamically-typed-programming-language&#34;&gt;Python is strongly, dynamically typed programming language.&lt;/h2&gt;
-
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Strong&lt;/strong&gt; typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Dynamic&lt;/strong&gt; typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Strong&lt;/strong&gt; typing means that the type of a value doesn&#39;t change in unexpected ways. A string containing only digits doesn&#39;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Dynamic&lt;/strong&gt; typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
-
 &lt;p&gt;For details check &lt;a href=&#34;https://stackoverflow.com/questions/11328920/is-python-strongly-typed&#34;&gt;this&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     

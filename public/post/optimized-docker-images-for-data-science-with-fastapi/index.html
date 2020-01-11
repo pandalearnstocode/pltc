@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.62.2">
 
 
 <link rel="canonical" href="/post/optimized-docker-images-for-data-science-with-fastapi/">
@@ -159,7 +159,7 @@
           
           
            is-active">
-          <a href="/">Home</a>
+          <a href="/post/">Home</a>
         </li>
       
         <li class="menu-item
@@ -232,7 +232,6 @@
       <p class="post-meta">@Aritra Biswas · Jul 21, 2019 · 3 min read</p>
     </header>
     <article class="post-content"><p>Lets build a container based application which is optimized in terms of resources and integrate FastAPI with it. It will help to interact the app to connect to the internet and at the same time we will try to get the bast of data science stack in python. Here is the basic layout which we will try to achieve,</p>
-
 <ol>
 <li>Alpine linux based docker container.</li>
 <li>Miniconda</li>
@@ -249,10 +248,10 @@ RUN conda update -n base -c defaults conda
 
 RUN conda install --yes --freeze-installed <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    nomkl <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    numpy<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>.16.3 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    pandas<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.24.2 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    numba<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.44.1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    dask<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numpy<span style="color:#f92672">=</span><span style="color:#f92672">=</span>1.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    pandas<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numba<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    dask<span style="color:#f92672">=</span><span style="color:#f92672">=</span>2.1.0 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
@@ -287,13 +286,18 @@ ENV PYTHONPATH<span style="color:#f92672">=</span>/app
 
 EXPOSE <span style="color:#ae81ff">80</span>
 
-CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t fa_mc_blas_dss .
+CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+docker build -t fa_mc_blas_dss .
 
-docker run -d -p <span style="color:#ae81ff">80</span>:80 fa_mc_blas_dss
+docker run -d -p 80:80 fa_mc_blas_dss
 
 docker run -it fa_mc_blas_dss sh
 
-docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">FROM frolvlad/alpine-miniconda3:python3.6
+docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span>
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+FROM frolvlad/alpine-miniconda3:python3.6
 
 ENV PYTHONDONTWRITEBYTECODE<span style="color:#f92672">=</span>true
 
@@ -302,10 +306,10 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev make <span style="colo
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> apk del .build-deps gcc libc-dev make
 
 RUN conda config --add channels intel <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed  -c intel numpy<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>.16.3 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel numba<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.44.1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel pandas<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>.24.2 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel dask<span style="color:#f92672">==</span><span style="color:#ae81ff">2</span>.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed  -c intel numpy<span style="color:#f92672">=</span><span style="color:#f92672">=</span>1.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel numba<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel pandas<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel dask<span style="color:#f92672">=</span><span style="color:#f92672">=</span>2.1.0 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
@@ -336,13 +340,17 @@ ENV PYTHONPATH<span style="color:#f92672">=</span>/app
 
 EXPOSE <span style="color:#ae81ff">80</span>
 
-CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span></code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker build -t fa_mc_mkl_svml_dss .
+CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;/start.sh&#34;</span><span style="color:#f92672">]</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">
+docker build -t fa_mc_mkl_svml_dss .
 
-docker run -d -p <span style="color:#ae81ff">80</span>:80 fa_mc_mkl_svml_dss
+docker run -d -p 80:80 fa_mc_mkl_svml_dss
 
 docker run -it fa_mc_mkl_svml_dss sh
 
-docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span></code></pre></div></article>
+docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color:#66d9ef">)</span>
+
+</code></pre></div></article>
     <footer class="post-footer">
       
       <ul class="post-tags">
@@ -362,7 +370,7 @@ docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>170</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>174</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.62.2">
 
 
 <link rel="canonical" href="/post/tutorial-quick-eda-in-python-using-pandas-profiling/">
@@ -159,7 +159,7 @@
           
           
            is-active">
-          <a href="/">Home</a>
+          <a href="/post/">Home</a>
         </li>
       
         <li class="menu-item
@@ -232,83 +232,63 @@
       <p class="post-meta">@Aritra Biswas · Nov 29, 2019 · 2 min read</p>
     </header>
     <article class="post-content"><p>EDA is one of the most important part of any data science work. Recently I have came accross a library called pandas profiling which makes it easier and creates a beautiful shareable report. So, here I am sharing some resouces related to  the project which I feel can be useful.</p>
-
 <h2 id="creating-virtual-envs-and-installing-dependencies">Creating virtual envs and installing dependencies</h2>
-
 <h3 id="dependency">Dependency</h3>
-
 <p>Anaconda and Python 3 has to be installed. If not check this <a href="https://docs.anaconda.com/anaconda/install/">link</a> to install Anaconda first.</p>
-
 <h3 id="create-and-activate-envs">Create and activate envs</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create --name pandasprofiling
-conda activate pandasprofiling</code></pre></div>
-<h3 id="install-library-dependencies">Install library dependencies</h3>
+conda activate pandasprofiling
+</code></pre></div><h3 id="install-library-dependencies">Install library dependencies</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda install -c anaconda pandas jupyter notebook
 conda config --add channels conda-forge
-conda install -c conda-forge pandas-profiling</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jupyter notebook</code></pre></div>
-<h3 id="using-pandas-profiling">Using pandas profiling</h3>
-
+conda install -c conda-forge pandas-profiling
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">jupyter notebook
+</code></pre></div><h3 id="using-pandas-profiling">Using pandas profiling</h3>
 <h4 id="import-dependency-and-data">Import dependency and data</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> pandas_profiling
-url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://gist.githubusercontent.com/seankross/a412dfbd88b3db70b74b/raw/5f23f993cd87c283ce766e7ac6b329ee7cc2e1d1/mtcars.csv&#34;</span>
-mtcars <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(url)</code></pre></div>
-<h4 id="data-type-and-numerical-check">Data type and numerical check</h4>
+url <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">https://gist.githubusercontent.com/seankross/a412dfbd88b3db70b74b/raw/5f23f993cd87c283ce766e7ac6b329ee7cc2e1d1/mtcars.csv</span><span style="color:#e6db74">&#34;</span>
+mtcars <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_csv(url)
+</code></pre></div><h4 id="data-type-and-numerical-check">Data type and numerical check</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># glimps of data</span>
 mtcars<span style="color:#f92672">.</span>head()
 <span style="color:#75715e"># descriptive stats by variable</span>
 mtcars<span style="color:#f92672">.</span>describe()
 <span style="color:#75715e"># data type and sub types by variable</span>
-pd<span style="color:#f92672">.</span>DataFrame(mtcars<span style="color:#f92672">.</span>dtypes,columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;datatypes&#39;</span>])</code></pre></div>
-<h4 id="generate-and-save-report">Generate and save report</h4>
+pd<span style="color:#f92672">.</span>DataFrame(mtcars<span style="color:#f92672">.</span>dtypes,columns<span style="color:#f92672">=</span>[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">datatypes</span><span style="color:#e6db74">&#39;</span>])
+</code></pre></div><h4 id="generate-and-save-report">Generate and save report</h4>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># generated eda for the dataset</span>
-mtcars<span style="color:#f92672">.</span>profile_report(style<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#39;full_width&#39;</span>:True})
+mtcars<span style="color:#f92672">.</span>profile_report(style<span style="color:#f92672">=</span>{<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">full_width</span><span style="color:#e6db74">&#39;</span>:True})
 <span style="color:#75715e"># save report in an object</span>
 mtcars_profile <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">.</span>profile_report()
 <span style="color:#75715e"># filter variables out from the object on the basis of a cutoff</span>
 mtcars_profile<span style="color:#f92672">.</span>get_rejected_variables(threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.9</span>)
 <span style="color:#75715e"># create a report with a title</span>
-profile <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">.</span>profile_report(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;EDA of mtcars dataset using Pandas Profiling&#39;</span>)
+profile <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">.</span>profile_report(title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">EDA of mtcars dataset using Pandas Profiling</span><span style="color:#e6db74">&#39;</span>)
 <span style="color:#75715e"># save report with the title</span>
-profile<span style="color:#f92672">.</span>to_file(output_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mtcars_eda.html&#34;</span>)
+profile<span style="color:#f92672">.</span>to_file(output_file<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mtcars_eda.html</span><span style="color:#e6db74">&#34;</span>)
 <span style="color:#75715e"># create a minified report</span>
-profile_minified <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">.</span>profile_report(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;EDA of mtcars dataset using Pandas Profiling&#39;</span>,minify_html<span style="color:#f92672">=</span>True)
+profile_minified <span style="color:#f92672">=</span> mtcars<span style="color:#f92672">.</span>profile_report(title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">EDA of mtcars dataset using Pandas Profiling</span><span style="color:#e6db74">&#39;</span>,minify_html<span style="color:#f92672">=</span>True)
 <span style="color:#75715e"># save the minified report</span>
-profile_minified<span style="color:#f92672">.</span>to_file(output_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mtcars_eda_minified.html&#34;</span>)</code></pre></div>
-<p>Here is the copy of the generated report <a href="/html_report/mtcars_eda.html">mtcars EDA</a> and <a href="/html_report/mtcars_eda_minified.html">mtcars EDA minified</a>.</p>
-
+profile_minified<span style="color:#f92672">.</span>to_file(output_file<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">mtcars_eda_minified.html</span><span style="color:#e6db74">&#34;</span>)
+</code></pre></div><p>Here is the copy of the generated report <a href="/html_report/mtcars_eda.html">mtcars EDA</a> and <a href="/html_report/mtcars_eda_minified.html">mtcars EDA minified</a>.</p>
 <h3 id="deactivate-conda">Deactivate conda</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda deactivate</code></pre></div>
-<h3 id="interprate-report">Interprate report</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda deactivate
+</code></pre></div><h3 id="interprate-report">Interprate report</h3>
 <h4 id="check-if-the-is-a-huge-amount-of-correlation-amount-the-variables-in-the-following-section">Check if the is a huge amount of correlation amount the variables in the following section.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_1.jpg" alt="" /></p>
-
+<p><img src="/img/python_img/pandas_profiling_1.jpg" alt=""></p>
 <h4 id="check-descriptive-statistics-for-numeric-variables-in-the-following-section-this-will-give-an-idea-about-the-distribution-of-the-variable">Check descriptive statistics for numeric variables in the following section. This will give an idea about the distribution of the variable.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_2.jpg" alt="" /></p>
-
+<p><img src="/img/python_img/pandas_profiling_2.jpg" alt=""></p>
 <h4 id="from-the-histogram-of-the-variable-one-can-have-an-idea-about-the-population-distribution-of-the-variable">From the histogram of the variable one can have an idea about the population distribution of the variable.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_3.jpg" alt="" /></p>
-
+<p><img src="/img/python_img/pandas_profiling_3.jpg" alt=""></p>
 <h4 id="correlation-heatmap-of-this-section-can-be-used-to-understand-multi-colinearity-among-the-variables-at-the-same-time-this-can-be-used-for-variable-selection">Correlation heatmap of this section can be used to understand multi-colinearity among the variables at the same time this can be used for variable selection.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_4.jpg" alt="" /></p>
-
+<p><img src="/img/python_img/pandas_profiling_4.jpg" alt=""></p>
 <h4 id="this-heatmap-can-be-used-to-understand-the-measure-of-association-between-categorical-variables">This heatmap can be used to understand the measure of association between categorical variables.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_5.jpg" alt="" /></p>
-
+<p><img src="/img/python_img/pandas_profiling_5.jpg" alt=""></p>
 <h4 id="the-bar-chart-shown-bellow-can-be-used-to-understand-the-missing-values-for-each-variable">The bar chart shown bellow can be used to understand the missing values for each variable.</h4>
-
-<p><img src="/img/python_img/pandas_profiling_6.jpg" alt="" /></p>
-
-<p>Here are couple of resources which was useful for creating this blog post and <a href="/notebooks/One line EDA using Pandas Profiling.ipynb">jupyter notebook</a>.</p>
-
+<p><img src="/img/python_img/pandas_profiling_6.jpg" alt=""></p>
+<p>Here are couple of resources which was useful for creating this blog post and [jupyter notebook](/notebooks/One line EDA using Pandas Profiling.ipynb).</p>
 <h3 id="references">References</h3>
-
 <ul>
 <li><a href="https://towardsdatascience.com/speed-up-your-exploratory-data-analysis-with-pandas-profiling-88b33dc53625">Speed Up Your Exploratory Data Analysis With Pandas-Profiling</a></li>
 <li><a href="https://pandas-profiling.github.io/pandas-profiling/docs/">Pandas Profiling Official Doc</a></li>

@@ -26,8 +26,8 @@
 
   
   <meta name="author" content="Aritra Biswas">
-  <meta name="description" content="Type checking in Python Python is strongly, dynamically typed programming language.  Strong typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
- Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
+  <meta name="description" content="Type checking in Python Python is strongly, dynamically typed programming language.   Strong typing means that the type of a value doesn&#39;t change in unexpected ways. A string containing only digits doesn&#39;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
+  Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
   For details check this.
 ">
 
@@ -36,8 +36,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@pdlearnstocode">
     <meta name="twitter:title" content="Python type checking using mypy">
-    <meta name="twitter:description" content="Type checking in Python Python is strongly, dynamically typed programming language.  Strong typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
- Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
+    <meta name="twitter:description" content="Type checking in Python Python is strongly, dynamically typed programming language.   Strong typing means that the type of a value doesn&#39;t change in unexpected ways. A string containing only digits doesn&#39;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
+  Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
   For details check this.
 ">
     <meta name="twitter:image" content="/img/python_img/mypy.png">
@@ -46,8 +46,8 @@
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="Python type checking using mypy">
-  <meta property="og:description" content="Type checking in Python Python is strongly, dynamically typed programming language.  Strong typing means that the type of a value doesn&amp;rsquo;t change in unexpected ways. A string containing only digits doesn&amp;rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
- Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
+  <meta property="og:description" content="Type checking in Python Python is strongly, dynamically typed programming language.   Strong typing means that the type of a value doesn&#39;t change in unexpected ways. A string containing only digits doesn&#39;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.
+  Dynamic typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.
   For details check this.
 ">
   <meta property="og:url" content="/post/python-type-checking-using-mypy/">
@@ -56,7 +56,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.62.2">
 
 
 <link rel="canonical" href="/post/python-type-checking-using-mypy/">
@@ -165,7 +165,7 @@
           
           
            is-active">
-          <a href="/">Home</a>
+          <a href="/post/">Home</a>
         </li>
       
         <li class="menu-item
@@ -238,185 +238,185 @@
       <p class="post-meta">@Aritra Biswas · Jun 25, 2019 · 5 min read</p>
     </header>
     <article class="post-content"><h1 id="type-checking-in-python">Type checking in Python</h1>
-
 <h2 id="python-is-strongly-dynamically-typed-programming-language">Python is strongly, dynamically typed programming language.</h2>
-
 <ul>
-<li><p><strong>Strong</strong> typing means that the type of a value doesn&rsquo;t change in unexpected ways. A string containing only digits doesn&rsquo;t magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.</p></li>
-
-<li><p><strong>Dynamic</strong> typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.</p></li>
+<li>
+<p><strong>Strong</strong> typing means that the type of a value doesn't change in unexpected ways. A string containing only digits doesn't magically become a number, as may happen in Perl. Every change of type requires an explicit conversion.</p>
+</li>
+<li>
+<p><strong>Dynamic</strong> typing means that runtime objects (values) have a type, as opposed to static typing where variables have a type.</p>
+</li>
 </ul>
-
 <p>For details check <a href="https://stackoverflow.com/questions/11328920/is-python-strongly-typed">this</a>.</p>
-
 <p>Let us write a function which will return addition of two numbers.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">example_addition</span>(a,b):
-    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b</code></pre></div>
-<p>This function looks and works absolutely fine for expected inputs.</p>
+    <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
+</code></pre></div><p>This function looks and works absolutely fine for expected inputs.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 b <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a, <span style="color:#e6db74">&#39; and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,example_addition(a,b))</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">example_addition</span>(a,b):
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74"> and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,example_addition(a,b))
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">example_addition</span>(a,b):
     <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
 
 <span style="color:#75715e"># This one works fine.</span>
 a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 b <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,example_addition(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))</code></pre></div>
-<pre><code>Addition of 3 and 4 is: 7
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,example_addition(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
+</code></pre></div><pre><code>Addition of 3 and 4 is: 7
 data type of a: &lt;class 'int'&gt;
 data type of b: &lt;class 'int'&gt;
 </code></pre>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># But let us consider due to some bud this a and b becomes of datatype string then,</span>
 
-a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;3&#39;</span>
-b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4&#39;</span>
+a <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>
+b <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>
 
 <span style="color:#75715e"># Then the same function call will return,</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,example_addition(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))</code></pre></div>
-<pre><code>Addition of 3 and 4 is: 34
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,example_addition(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
+</code></pre></div><pre><code>Addition of 3 and 4 is: 34
 data type of a: &lt;class 'str'&gt;
 data type of b: &lt;class 'str'&gt;
 </code></pre>
-
 <p>Now in case of a small program it is still possible to check and debug the code and figure out that where the problem has occured but imagine a large system with multiple variables or some API where these inputs are coming from a POST call. Suppose some validation breaks and variables values are passed as string. It will not throw a compilation error or syntax error but runtime error will take place. In case of a large system it is almost impossible to debug and figure out these type of errors. So, in oder to be sure that any such scenario does not occur we can use mypy package. In the following section we will explore how we can use mypy to avoid these type of errors.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%%</span>writefile mypy_example1<span style="color:#f92672">.</span>py
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span><span style="color:#f92672">%</span>writefile mypy_example1<span style="color:#f92672">.</span>py
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-&gt;</span>int:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>int:
     <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
 
 a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 b <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,add_add_this_with_mypy(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))</code></pre></div>
-<pre><code>Writing mypy_example1.py
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,add_add_this_with_mypy(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
+</code></pre></div><pre><code>Writing mypy_example1.py
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>python mypy_example1<span style="color:#f92672">.</span>py</code></pre></div>
-<pre><code>Addition of 3 and 4 is: 7
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>python mypy_example1<span style="color:#f92672">.</span>py
+</code></pre></div><pre><code>Addition of 3 and 4 is: 7
 data type of a: &lt;class 'int'&gt;
 data type of b: &lt;class 'int'&gt;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>mypy mypy_example1<span style="color:#f92672">.</span>py</code></pre></div>
-<p>Since there is not error we can be sure that everything has worked has per plan. But now we will change the data type of the variables and will see how mypy can be useful to prevent the above mentioned scenario.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%%</span>writefile mypy_example1<span style="color:#f92672">.</span>py
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>mypy mypy_example1<span style="color:#f92672">.</span>py
+</code></pre></div><p>Since there is not error we can be sure that everything has worked has per plan. But now we will change the data type of the variables and will see how mypy can be useful to prevent the above mentioned scenario.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">%</span><span style="color:#f92672">%</span>writefile mypy_example1<span style="color:#f92672">.</span>py
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-&gt;</span>int:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>int:
     <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
 
 a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 b <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,add_add_this_with_mypy(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,add_add_this_with_mypy(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
 
-a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;3&#39;</span>
-b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4&#39;</span>
+a <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>
+b <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>
 
 <span style="color:#75715e"># Then the same function call will return,</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,add_add_this_with_mypy(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))</code></pre></div>
-<pre><code>Overwriting mypy_example1.py
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,add_add_this_with_mypy(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
+</code></pre></div><pre><code>Overwriting mypy_example1.py
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>python mypy_example1<span style="color:#f92672">.</span>py</code></pre></div>
-<pre><code>Addition of 3 and 4 is: 7
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>python mypy_example1<span style="color:#f92672">.</span>py
+</code></pre></div><pre><code>Addition of 3 and 4 is: 7
 data type of a: &lt;class 'int'&gt;
 data type of b: &lt;class 'int'&gt;
 Addition of 3 and 4 is: 34
 data type of a: &lt;class 'str'&gt;
 data type of b: &lt;class 'str'&gt;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>mypy mypy_example1<span style="color:#f92672">.</span>py</code></pre></div>
-<pre><code>mypy_example1.py:12: error: Incompatible types in assignment (expression has type &quot;str&quot;, variable has type &quot;int&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#960050;background-color:#1e0010">!</span>mypy mypy_example1<span style="color:#f92672">.</span>py
+</code></pre></div><pre><code>mypy_example1.py:12: error: Incompatible types in assignment (expression has type &quot;str&quot;, variable has type &quot;int&quot;)
 mypy_example1.py:13: error: Incompatible types in assignment (expression has type &quot;str&quot;, variable has type &quot;int&quot;)
 </code></pre>
-
 <p>As you can see that mypy has thrown an error.</p>
-
 <p><strong>Note:</strong> mypy can catch this form of error only if you run the python file from console. It you just type the datatype but do not compile the function in mypy mode it will not do anything special. So, in order to be sure when in doubt compile it with mypy and always has the datatype of variable in case of definition of a function or variables. It also increases the readability of the code.</p>
-
-<h2 id="example-of-variable">Example of  variable</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-&gt;</span>int:
+<h2 id="example-of--variable">Example of  variable</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_add_this_with_mypy</span>(a:int,b:int)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>int:
     <span style="color:#66d9ef">return</span> a <span style="color:#f92672">+</span> b
 
 a <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
 b <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,add_add_this_with_mypy(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,add_add_this_with_mypy(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
 
-a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;3&#39;</span>
-b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4&#39;</span>
+a <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">3</span><span style="color:#e6db74">&#39;</span>
+b <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">4</span><span style="color:#e6db74">&#39;</span>
 
 <span style="color:#75715e"># Then the same function call will return,</span>
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;Addition of&#39;</span>,a,<span style="color:#e6db74">&#39;and&#39;</span>,b, <span style="color:#e6db74">&#39;is:&#39;</span>,add_add_this_with_mypy(a,b))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of a:&#39;</span>,type(a))
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;data type of b:&#39;</span>,type(b))</code></pre></div>
-<h2 id="example-of-list">Example of list</h2>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Addition of</span><span style="color:#e6db74">&#39;</span>,a,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">and</span><span style="color:#e6db74">&#39;</span>,b, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">is:</span><span style="color:#e6db74">&#39;</span>,add_add_this_with_mypy(a,b))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of a:</span><span style="color:#e6db74">&#39;</span>,type(a))
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">data type of b:</span><span style="color:#e6db74">&#39;</span>,type(b))
+
+</code></pre></div><h2 id="example-of-list">Example of list</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Example of lists</span>
 <span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_a_list</span>(start:int,end:int)<span style="color:#f92672">-&gt;</span>List[int]:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_a_list</span>(start:int,end:int)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>List[int]:
     result <span style="color:#f92672">=</span> []
     <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(start,end):
        result<span style="color:#f92672">.</span>append(i)
     <span style="color:#66d9ef">return</span> result
 
-<span style="color:#66d9ef">print</span>(get_a_list(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">22</span>))</code></pre></div>
-<h2 id="example-of-tuple">Example of tuple</h2>
+<span style="color:#66d9ef">print</span>(get_a_list(<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">22</span>))
+</code></pre></div><h2 id="example-of-tuple">Example of tuple</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Example with tuple</span>
 <span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Tuple
 
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_a_tuple</span>(name:str,age:float,height:float)<span style="color:#f92672">-&gt;</span>Tuple[str, int, float]:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_a_tuple</span>(name:str,age:float,height:float)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>Tuple[str, int, float]:
     result:Tuple[str, int, float] <span style="color:#f92672">=</span> (name, age, height)
     <span style="color:#66d9ef">return</span> result
 
-<span style="color:#66d9ef">print</span>(get_me_a_tuple(<span style="color:#e6db74">&#34;Aritra&#34;</span>,<span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">95</span>))</code></pre></div>
-<h2 id="example-of-dictionary">Example of dictionary</h2>
+<span style="color:#66d9ef">print</span>(get_me_a_tuple(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Aritra</span><span style="color:#e6db74">&#34;</span>,<span style="color:#ae81ff">23</span>,<span style="color:#ae81ff">95</span>))
+
+</code></pre></div><h2 id="example-of-dictionary">Example of dictionary</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e"># Example of using a type checking with dict</span>
 <span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Dict
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getname</span>(firstname:str,familyname:str)<span style="color:#f92672">-&gt;</span>Dict[str, str]:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getname</span>(firstname:str,familyname:str)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>Dict[str, str]:
     fullname:Dict[str, str] <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74">&#34;first_name&#34;</span>: firstname,
-    <span style="color:#e6db74">&#34;last_name&#34;</span>: familyname
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">first_name</span><span style="color:#e6db74">&#34;</span>: firstname,
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">last_name</span><span style="color:#e6db74">&#34;</span>: familyname
     }
     <span style="color:#66d9ef">return</span> fullname
 
-<span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#39;My name is &#39;</span>,getname(firstname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Aritra&#39;</span>,familyname <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Biswas&#39;</span>))</code></pre></div>
-<h2 id="example-of-list-of-dictionaries">Example of list of dictionaries</h2>
+<span style="color:#66d9ef">print</span>(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">My name is </span><span style="color:#e6db74">&#39;</span>,getname(firstname <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Aritra</span><span style="color:#e6db74">&#39;</span>,familyname <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Biswas</span><span style="color:#e6db74">&#39;</span>))
+
+</code></pre></div><h2 id="example-of-list-of-dictionaries">Example of list of dictionaries</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List, Dict
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_a_list_of_dicts</span>(name_1:Dict[str, int],name_2:Dict[str, int])<span style="color:#f92672">-&gt;</span>List[Dict[str, int]]:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_a_list_of_dicts</span>(name_1:Dict[str, int],name_2:Dict[str, int])<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>List[Dict[str, int]]:
     result <span style="color:#f92672">=</span> []
     result<span style="color:#f92672">.</span>append(name_1)
     result<span style="color:#f92672">.</span>append(name_2)
     <span style="color:#66d9ef">return</span> result
 
-name_1 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Aritra&#34;</span>:<span style="color:#ae81ff">27</span>}
-name_2 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Arghya&#34;</span>:<span style="color:#ae81ff">21</span>}
+name_1 <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Aritra</span><span style="color:#e6db74">&#34;</span>:<span style="color:#ae81ff">27</span>}
+name_2 <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Arghya</span><span style="color:#e6db74">&#34;</span>:<span style="color:#ae81ff">21</span>}
 
-<span style="color:#66d9ef">print</span>(get_me_a_list_of_dicts(name_1,name_2))</code></pre></div>
-<h2 id="example-of-list-of-tuples">Example of list of tuples</h2>
+<span style="color:#66d9ef">print</span>(get_me_a_list_of_dicts(name_1,name_2))
+</code></pre></div><h2 id="example-of-list-of-tuples">Example of list of tuples</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List, Tuple
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_cordinates</span>(x1:float,y1:float,x2:float,y2:float)<span style="color:#f92672">-&gt;</span>List[Tuple[float, float]]:
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_me_cordinates</span>(x1:float,y1:float,x2:float,y2:float)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>List[Tuple[float, float]]:
     coordinates <span style="color:#f92672">=</span> List[Tuple[float, float]]
     result:coordinates <span style="color:#f92672">=</span> [(x1,y1),(x2,y2)]
     <span style="color:#66d9ef">return</span> result
 
-<span style="color:#66d9ef">print</span>(get_me_cordinates(x1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.2</span>,y1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.22</span>,x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.1</span> ,y2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">8.9</span>))</code></pre></div>
-<p><strong>Note:</strong>
-* This is possible to use pd.DataFrame or np.ndarray as datatype.
-* mypy will treat the above mentioned data types as others. There is a numpy project which was about to be done by end of 2018. But there is not much development on that front.</p>
-
+<span style="color:#66d9ef">print</span>(get_me_cordinates(x1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.2</span>,y1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">3.22</span>,x2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.1</span> ,y2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">8.9</span>))
+</code></pre></div><p><strong>Note:</strong></p>
+<ul>
+<li>This is possible to use pd.DataFrame or np.ndarray as datatype.</li>
+<li>mypy will treat the above mentioned data types as others. There is a numpy project which was about to be done by end of 2018. But there is not much development on that front.</li>
+</ul>
 <p><strong>Links:</strong></p>
-
 <ul>
 <li><a href="https://www.youtube.com/watch?v=2xWhaALHTvU&amp;t">Type-Checking Python Programs With Type Hints and mypy</a></li>
 <li><a href="https://www.youtube.com/watch?v=pMgmKJyWKn8">Carl Meyer - Type-checked Python in the real world - PyCon 2018</a></li>
@@ -429,7 +429,7 @@ name_2 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Ar
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>196</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>200</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

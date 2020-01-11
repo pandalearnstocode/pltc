@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.53">
+<meta name="generator" content="Hugo 0.62.2">
 
 
 <link rel="canonical" href="/post/maintain-readability-of-code-in-time-with-wily/">
@@ -159,7 +159,7 @@
           
           
            is-active">
-          <a href="/">Home</a>
+          <a href="/post/">Home</a>
         </li>
       
         <li class="menu-item
@@ -232,9 +232,7 @@
       <p class="post-meta">@Aritra Biswas · Jan 8, 2020 · 4 min read</p>
     </header>
     <article class="post-content"><h3 id="maintainability-code-with-wily">Maintainability code with Wily</h3>
-
 <p>Wily is the tool of choice which will compute and maintain a measure of maintainability of a code in time. This can be important to check that a code is readable or not at a time of development. We all know that a piece of code evolves with time. So, this is important to measure the complexity of a code in time. Here we will see how we can set up this tool to calculate complexity of a code. Also, we will see how we can integrate this in the CI pipelines so we can ensure code quality in time.</p>
-
 <h3 id="project-directory-structure">Project directory structure</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">.
 ├── README.md
@@ -245,30 +243,26 @@
     ├── css
     │   └── main.css
     ├── graph.htm
-    └── index.html</code></pre></div>
-<h3 id="create-a-virtual-environment">Create a virtual environment</h3>
-
+    └── index.html
+</code></pre></div><h3 id="create-a-virtual-environment">Create a virtual environment</h3>
 <p>Create a new environment to install all the libraries required.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">conda create --name wily_envs
-conda activate wily_envs</code></pre></div>
-<p>Activate the environment and install the required libraries.</p>
-
+conda activate wily_envs
+</code></pre></div><p>Activate the environment and install the required libraries.</p>
 <h3 id="install-wily">Install Wily</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install wily pre-commit</code></pre></div>
-<h3 id="initalise-git-in-the-folder">Initalise git in the folder</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pip3 install wily pre-commit
+</code></pre></div><h3 id="initalise-git-in-the-folder">Initalise git in the folder</h3>
 <p>After installing the dependency, initalise the folder with git and make inital commit</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git init
 git add .
-git commit -m <span style="color:#e6db74">&#34;inital commit.&#34;</span></code></pre></div>
-<h3 id="write-python-function-in-a-file">Write Python function in a file</h3>
-
+git commit -m <span style="color:#e6db74">&#34;inital commit.&#34;</span>
+</code></pre></div><h3 id="write-python-function-in-a-file">Write Python function in a file</h3>
 <p>Create a Python file say, <code>easy_functions.py</code>. Define the following function like,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">easy_function</span>(a, b):
     <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">and</span> b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
         c <span style="color:#f92672">=</span> a <span style="color:#f92672">+</span> b
-    <span style="color:#66d9ef">return</span> c</code></pre></div>
-<p>Now, create anoter file called <code>difficult_functions.py</code>.</p>
+    <span style="color:#66d9ef">return</span> c
+</code></pre></div><p>Now, create anoter file called <code>difficult_functions.py</code>.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">difficult_function</span>(a, b):
     <span style="color:#66d9ef">if</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
         <span style="color:#66d9ef">if</span> b <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
@@ -283,11 +277,11 @@ git commit -m <span style="color:#e6db74">&#34;inital commit.&#34;</span></code>
         <span style="color:#66d9ef">else</span>:
             <span style="color:#66d9ef">pass</span>
     <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">pass</span></code></pre></div>
-<p>Add files in the git staging area.</p>
+        <span style="color:#66d9ef">pass</span>
+</code></pre></div><p>Add files in the git staging area.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git add .
-git commit -m <span style="color:#e6db74">&#34;adding new files and functions in the staging area.&#34;</span></code></pre></div>
-<h3 id="check-and-create-wily-report">Check and create Wily report</h3>
+git commit -m <span style="color:#e6db74">&#34;adding new files and functions in the staging area.&#34;</span>
+</code></pre></div><h3 id="check-and-create-wily-report">Check and create Wily report</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># For help</span>
 wily --help
 <span style="color:#75715e"># To build report for all the functions in the current directory</span>
@@ -304,23 +298,17 @@ wily diff . -r HEAD^1
 <span style="color:#75715e"># Check all the present matricies</span>
 wily list-metrics
 <span style="color:#75715e"># Generate a HTML report for the exiting functions</span>
-wily report --format HTML .</code></pre></div>
-<p>The generated graph for the functions will look like <a href="https://pandalearnstocode.in/wily_graph_report/wily-report.html">this</a>.</p>
-
+wily report --format HTML .
+</code></pre></div><p>The generated graph for the functions will look like <a href="https://pandalearnstocode.in/wily_graph_report/wily-report.html">this</a>.</p>
 <h3 id="generate-wily-graph">Generate Wily graph</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">wily graph . raw.loc
-wily graph easy_functions.py loc</code></pre></div>
-<p>The graph for the function&rsquo;s complexicity will be plotted in the generated report and this will look like <a href="https://pandalearnstocode.in/wily_report/index.html">this</a>.
+wily graph easy_functions.py loc
+</code></pre></div><p>The graph for the function's complexicity will be plotted in the generated report and this will look like <a href="https://pandalearnstocode.in/wily_report/index.html">this</a>.
 This can be done for a function or a directory.</p>
-
 <h3 id="integrate-with-per-commit-web-hook">Integrate with per-commit web hook</h3>
-
 <p>There is a pre-commit hook and azure pipelines defined for this tool which can be implimented for CI.</p>
-
 <h4 id="pre-commit-plugin">pre-commit plugin</h4>
-
 <p>Create a file called, <code>.pre-commit-config.yaml</code>.</p>
-
 <p>The content of the file can be as follows,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">repos:
 -   repo: local
@@ -330,30 +318,27 @@ This can be done for a function or a directory.</p>
         entry: wily diff
         verbose: true
         language: python
-        additional_dependencies: <span style="color:#f92672">[</span>wily<span style="color:#f92672">]</span></code></pre></div>
-<p>Similarly an Azure pipeline can be defined as follows,</p>
+        additional_dependencies: <span style="color:#f92672">[</span>wily<span style="color:#f92672">]</span>
+
+</code></pre></div><p>Similarly an Azure pipeline can be defined as follows,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">- script: |
   pip install wily
   wily build src/
   displayName: Install Wily and compile cache
 - script: <span style="color:#e6db74">&#34;wily diff src/ -r HEAD^1&#34;</span>
-  displayName: Compare previous commit</code></pre></div>
-<p>After saving check that the <code>pre-commit</code> library is installed or not using,</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pre-commit --version</code></pre></div>
-<p>Install the pre-commit hook for the respective directory,</p>
+  displayName: Compare previous commit
+</code></pre></div><p>After saving check that the <code>pre-commit</code> library is installed or not using,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pre-commit --version
+</code></pre></div><p>Install the pre-commit hook for the respective directory,</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">pre-commit install
 pre-commit run --all-files
 git add .
 git commit -m <span style="color:#e6db74">&#34;commit after installing pre-commit hook&#34;</span>
-conda deactivate</code></pre></div>
-<p>After this point the repo should be enabled with Wily.</p>
-
+conda deactivate
+</code></pre></div><p>After this point the repo should be enabled with Wily.</p>
 <h3 id="take-a-informaed-decesion">Take a informaed decesion</h3>
-
 <p>To simplify our life Wily provides us a MI which stands for code maintainablity index. If the index is in between 50 to 75, it needs improvement but anything less than 50 is not acceptable. Most of the companies like Microsoft and Java maintain there MI between 75 to 100.</p>
-
 <h2 id="references">References</h2>
-
 <ul>
 <li><a href="https://www.youtube.com/watch?v=dqdsNoApJ80">Pycon 2019 : Wily Python: Writing simpler and more maintainable Python</a></li>
 <li><a href="https://speakerdeck.com/pycon2019/anthony-shaw-wily-python-writing-simpler-and-more-maintainable-python">Anthony Shaw - Wily Python: Writing simpler and more maintainable Python</a></li>
