@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Wed, 08 Jan 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
@@ -19,6 +19,15 @@
       
       <guid>/links/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Automated documentation using pdoc3</title>
+      <link>/post/automated-docstring-using-pdoc3/</link>
+      <pubDate>Mon, 13 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/automated-docstring-using-pdoc3/</guid>
+      <description>&lt;p&gt;Documentation of a project is one of the essential aspects in terms of maintainability. Here, in this article, we will cover pdoc3, a python library which can create documentation quickly without any bottleneck. This library is quite useful for creating documentation for backend or middleware in my mind. I find it challenging to use with math symbols in this, but document generation and hosting quite easy. Pdoc is quite easy to use in comparison with Sphinx, which is quite good with LaTeX symbol and other fancy things.&lt;/p&gt;</description>
     </item>
     
     <item>
