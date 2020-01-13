@@ -20,7 +20,7 @@ Documentation of a project is one of the essential aspects in terms of maintaina
 
 Just one point if you are planning to document a project it has to be good because,
 
-![https://pandalearnstocode.in/slide/pdoc_funny.jpg](https://pandalearnstocode.in/slide/pdoc_funny.png)
+![https://pandalearnstocode.in/img/python_img/pdoc_funny.png](https://pandalearnstocode.in/img/python_img/pdoc_funny.png)
 
 
 ## List of required dependencies for this project
