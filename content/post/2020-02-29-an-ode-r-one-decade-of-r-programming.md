@@ -16,7 +16,7 @@ Today R is completing the 20th year of its journey. I am thrilled and excited to
 <!--more-->
 
 
-<img src="/img/rlang_img/20years_of_R_v1.jpg" alt="" width="200px" height="200px"/>
+<img src="/img/rlang_img/20years_of_R_v1.jpg" alt="" width="450px" height="400px"/>
 
 Honestly, at that time and till today, C is a language that is very much close to my heart. I enjoyed coding different stuff in C. At the later stage of my career, I have used C a lot for benchmarking studies with NumPy, Numba, and CPython and found it equally fascinating. My old friend and namesake Aritra Halder once suggested a book named __"The C Programming Language" by Brian Kernighan and Dennis Ritchie__. It was one of the best things that ever happened to me. It toughs me different ways of working with C and the under the hood philosophy of the language.
 
