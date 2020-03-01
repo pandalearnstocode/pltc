@@ -1,5 +1,5 @@
 ---
-title: Log system and libraries information for better reproducibility in Python
+title: System information for better reproducibility in Python
 author: Aritra Biswas
 date: '2020-03-02'
 slug: log-system-and-libraries-information-for-better-reproducibility-in-python
@@ -11,7 +11,7 @@ tags:
   - Code Quality
   - Python
   - Documentation
-cover: /images/cover.jpg
+cover: "/img/python_img/python logo.png"
 ---
 
 One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way. 
@@ -52,13 +52,10 @@ show_system_info()
 It not only helps to understand the about the system but it also gives a few information about the avaiable system libraries and hardware specification which is import in many case. Here is a sample output of the above mentioned function.
 
 
-<img src="/img/python_img/get_system_info_part1.jpeg" alt=""/>
+![](/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part1.jpg)
 
-<img src="/img/python_img/get_system_info_part2.jpeg" alt=""/>
+![](/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part2.jpg)
 
-<img src="/img/python_img/get_system_info_part3.jpeg" alt=""/>
+![](/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part3.jpg)
 
-
-
-
-
+At times for profiling purpose it is important to know the backend for numpy. The above output shows various important information about the system libraries. I find it important and try to use it as much as possible in log and in the starting of any jupyter notebook. It can be made more informative and interpretable. In future I will try to come up with a better version of this function.
