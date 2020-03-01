@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Sat, 29 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Log system and libraries information for better reproducibility in Python</title>
+      <link>/post/log-system-and-libraries-information-for-better-reproducibility-in-python/</link>
+      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/log-system-and-libraries-information-for-better-reproducibility-in-python/</guid>
+      <description>&lt;p&gt;One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>One decade of R programming</title>
