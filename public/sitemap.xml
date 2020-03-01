@@ -8,17 +8,52 @@
   </url>
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/life-experience/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/an-ode-r-one-decade-of-r-programming/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/programming/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/r/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-02-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/automated-docstring-using-pdoc3/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/best-practices/</loc>
-    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
   </url>
   
@@ -38,22 +73,7 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/python/</loc>
-    <lastmod>2020-01-13T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-01-13T00:00:00+00:00</lastmod>
   </url>
   
