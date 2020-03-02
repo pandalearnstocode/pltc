@@ -1,17 +1,16 @@
 ---
-title: System information for better reproducibility in Python
-author: Aritra Biswas
-date: '2020-03-02'
+title: System information for better reproducibility
+author: Aritra
+date: '2020-03-03'
+slug: system-information-for-better-reproducibility
 categories:
   - Programming
-  - Python
 tags:
   - Best practices
-  - Code Quality
   - Documentation
-  - Python
-cover: "/img/python_img/python_logo.png"
+cover: /img/python_img/python_logo.png
 ---
+
 
 One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way. 
 

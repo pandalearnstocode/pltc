@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>System information for better reproducibility in Python</title>
+  <title></title>
 
   
   
@@ -25,27 +25,24 @@
   
 
   
-  <meta name="author" content="Aritra Biswas">
-  <meta name="description" content="One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.
-">
+  
+  <meta name="description" content="">
 
   
   
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@pdlearnstocode">
-    <meta name="twitter:title" content="System information for better reproducibility in Python">
-    <meta name="twitter:description" content="One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.
-">
-    <meta name="twitter:image" content="/img/python_img/python_logo.png">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="/images/aritra-biswas.png">
   
 
   
   <meta property="og:type" content="article">
-  <meta property="og:title" content="System information for better reproducibility in Python">
-  <meta property="og:description" content="One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.
-">
+  <meta property="og:title" content="">
+  <meta property="og:description" content="">
   <meta property="og:url" content="/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python/">
-  <meta property="og:image" content="/img/python_img/python_logo.png">
+  <meta property="og:image" content="/images/aritra-biswas.png">
 
 
 
@@ -232,58 +229,14 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">System information for better reproducibility in Python</h1>
-      <p class="post-meta">@Aritra Biswas · Mar 2, 2020 · 2 min read</p>
+      <h1 class="post-title"></h1>
+      <p class="post-meta">@Aritra Biswas · Jan 1, 0001 · 0 min read</p>
     </header>
-    <article class="post-content"><p>One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.</p>
-<p>Many times I have seen that while formulating the problem, the solution comes to my mind. I don't know if the same for everyone else or not. But quite often, I have seen that people share a problem, which is perfectly reproducible, but the environment-related information is missing in the post or the log. It is tough and many times impossible to solve such a problem if the required information about the environment and libraries are not known. Here is a snippet that I use while logging or sharing any code with my peers, which is quite useful, in my opinion.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">from</span> logzero <span style="color:#f92672">import</span> logger
-<span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
-<span style="color:#f92672">import</span> numexpr
-<span style="color:#f92672">import</span> platform
-<span style="color:#f92672">import</span> socket
-<span style="color:#f92672">import</span> psutil
-<span style="color:#f92672">import</span> pyarrow <span style="color:#f92672">as</span> pa
-
-<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_system_info</span>(logger<span style="color:#f92672">=</span>logger):
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Pandas version: {pd.__version__}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Numpy version: {np.__version__}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Number of CPU cores: {pa.cpu_count()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform: {platform.system()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform release: {platform.release()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform version: {platform.version()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Architecture: {platform.machine()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Hostname: {socket.gethostname()}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">IP address: {socket.gethostbyname(socket.gethostname())}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">RAM : {str(round(psutil.virtual_memory().total / (1024.0 **3)))+</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> GB</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Pandas, Numpy and  Numexpr metadata:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
-    pd<span style="color:#f92672">.</span>show_versions()
-    np<span style="color:#f92672">.</span>show_config()
-    numexpr<span style="color:#f92672">.</span>print_versions()
-show_system_info()
-</code></pre></div><p>It not only helps to understand the about the system but it also gives a few information about the avaiable system libraries and hardware specification which is import in many case. Here is a sample output of the above mentioned function.</p>
-<p><img src="/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part1.jpg" alt=""></p>
-<p><img src="/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part2.jpg" alt=""></p>
-<p><img src="/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python_files/get_system_info_part3.jpg" alt=""></p>
-<p>At times for profiling purpose it is important to know the backend for numpy. The above output shows various important information about the system libraries. I find it important and try to use it as much as possible in log and in the starting of any jupyter notebook. It can be made more informative and interpretable. In future I will try to come up with a better version of this function.</p></article>
+    <article class="post-content"></article>
     <footer class="post-footer">
       
-      <ul class="post-tags">
-        
-          <li><a href="/tags/best-practices"><span class="tag">Best Practices</span></a></li>
-        
-          <li><a href="/tags/code-quality"><span class="tag">Code Quality</span></a></li>
-        
-          <li><a href="/tags/documentation"><span class="tag">Documentation</span></a></li>
-        
-          <li><a href="/tags/python"><span class="tag">Python</span></a></li>
-        
-      </ul>
-      
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>737485</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     

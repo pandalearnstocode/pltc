@@ -7,17 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.</copyright>
-    <lastBuildDate>Mon, 02 Mar 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 03 Mar 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/documentation/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>System information for better reproducibility in Python</title>
-      <link>/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python/</link>
-      <pubDate>Mon, 02 Mar 2020 00:00:00 +0000</pubDate>
+      <title>System information for better reproducibility</title>
+      <link>/post/system-information-for-better-reproducibility/</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
       
-      <guid>/post/2020-03-02-log-system-and-libraries-information-for-better-reproducibility-in-python/</guid>
+      <guid>/post/system-information-for-better-reproducibility/</guid>
       <description>&lt;p&gt;One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.&lt;/p&gt;</description>
     </item>
     
