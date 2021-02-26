@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 <link rel="canonical" href="/post/automated-docstring-using-pdoc3/">
@@ -139,9 +139,9 @@
     
     
   <header class="site-header">
-  <a href="/"><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
+  <a href=""><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="/">Panda Learns To Code</a></h2>
+  <h2 class="title"><a href="">Panda Learns To Code</a></h2>
   
   <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -259,26 +259,26 @@ cd ..
 mkdir html <span style="color:#f92672">&amp;&amp;</span> cd html <span style="color:#f92672">&amp;&amp;</span> touch doc_app.py <span style="color:#f92672">&amp;&amp;</span> cd ..
 </code></pre></div><p>These steps will create two folders named <code>documentation</code> and <code>HTML</code> in the root folder. Create <code>add_two_numbers.py</code> in the  <code>documentation</code> folder and <code>doc_app.py</code> in the HTML folder. Here are the contents for the folders mentioned,</p>
 <h3 id="content-of-add_two_numberspyfile">Content of <code>add_two_numbers.py</code>file</h3>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">addition</span>(first_number: int, second_number: float) <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> float:
-	<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;</span><span style="color:#e6db74">This function will perform addition of two numbers.</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	Parameters</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	----------</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	first_number : int</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">		the 1st arg has to be an int</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	second_number : float</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">		the 2nd arg has to be an float</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	Returns</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	-------</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	float</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">		the result of sum of an int and a float will be a float</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"></span><span style="color:#e6db74">	</span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">addition</span>(first_number: int, second_number: float) <span style="color:#f92672">-&gt;</span> float:
+	<span style="color:#e6db74">&#34;&#34;&#34;This function will perform addition of two numbers.
+</span><span style="color:#e6db74">	Parameters
+</span><span style="color:#e6db74">	----------
+</span><span style="color:#e6db74">	first_number : int
+</span><span style="color:#e6db74">		the 1st arg has to be an int
+</span><span style="color:#e6db74">	second_number : float
+</span><span style="color:#e6db74">		the 2nd arg has to be an float
+</span><span style="color:#e6db74">	Returns
+</span><span style="color:#e6db74">	-------
+</span><span style="color:#e6db74">	float
+</span><span style="color:#e6db74">		the result of sum of an int and a float will be a float
+</span><span style="color:#e6db74">	&#34;&#34;&#34;</span>
 	result: float  <span style="color:#f92672">=</span> first_number <span style="color:#f92672">+</span> second_number
 	<span style="color:#66d9ef">return</span> result
 </code></pre></div><h3 id="content-of-doc_apppy-file">Content of <code>doc_app.py</code> file</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
 <span style="color:#f92672">from</span> starlette.staticfiles <span style="color:#f92672">import</span> StaticFiles
 app <span style="color:#f92672">=</span> FastAPI()
-app<span style="color:#f92672">.</span>mount(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/documentation</span><span style="color:#e6db74">&#34;</span>, StaticFiles(directory<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">documentation</span><span style="color:#e6db74">&#34;</span>))
+app<span style="color:#f92672">.</span>mount(<span style="color:#e6db74">&#34;/documentation&#34;</span>, StaticFiles(directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documentation&#34;</span>))
 </code></pre></div><h3 id="convert-docstring-to-html-files-using-pdoc3">Convert docstring to HTML files using pdoc3</h3>
 <p>To generate HTML files from the docstring use the following command.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># In development</span>
@@ -318,7 +318,7 @@ open -a <span style="color:#e6db74">&#34;Google Chrome&#34;</span> http://127.0.
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>410</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -327,7 +327,7 @@ open -a <span style="color:#e6db74">&#34;Google Chrome&#34;</span> http://127.0.
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2020 Panda Learns To Code</p>
+  <p>© 2017-2021 Panda Learns To Code</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 <link rel="canonical" href="/post/optimized-docker-images-for-data-science-with-fastapi/">
@@ -139,9 +139,9 @@
     
     
   <header class="site-header">
-  <a href="/"><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
+  <a href=""><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="/">Panda Learns To Code</a></h2>
+  <h2 class="title"><a href="">Panda Learns To Code</a></h2>
   
   <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -252,10 +252,10 @@ RUN conda update -n base -c defaults conda
 
 RUN conda install --yes --freeze-installed <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    nomkl <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    numpy<span style="color:#f92672">=</span><span style="color:#f92672">=</span>1.16.3 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    pandas<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.24.2 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    numba<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.44.1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    dask<span style="color:#f92672">=</span><span style="color:#f92672">=</span>2.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numpy<span style="color:#f92672">==</span>1.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    pandas<span style="color:#f92672">==</span>0.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    numba<span style="color:#f92672">==</span>0.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    dask<span style="color:#f92672">==</span>2.1.0 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
@@ -310,10 +310,10 @@ RUN apk add --no-cache --virtual .build-deps gcc libc-dev make <span style="colo
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> apk del .build-deps gcc libc-dev make
 
 RUN conda config --add channels intel <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed  -c intel numpy<span style="color:#f92672">=</span><span style="color:#f92672">=</span>1.16.3 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel numba<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.44.1 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel pandas<span style="color:#f92672">=</span><span style="color:#f92672">=</span>0.24.2 <span style="color:#ae81ff">\
-</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel dask<span style="color:#f92672">=</span><span style="color:#f92672">=</span>2.1.0 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed  -c intel numpy<span style="color:#f92672">==</span>1.16.3 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel numba<span style="color:#f92672">==</span>0.44.1 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel pandas<span style="color:#f92672">==</span>0.24.2 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda install -y --freeze-installed -c intel dask<span style="color:#f92672">==</span>2.1.0 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean --all <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> conda clean -afy <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    <span style="color:#f92672">&amp;&amp;</span> find /opt/conda/ -follow -type f -name <span style="color:#e6db74">&#39;*.a&#39;</span> -delete <span style="color:#ae81ff">\
@@ -374,7 +374,7 @@ docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>248</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>586</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -383,7 +383,7 @@ docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2020 Panda Learns To Code</p>
+  <p>© 2017-2021 Panda Learns To Code</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

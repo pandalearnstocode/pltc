@@ -50,7 +50,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.62.2" />
+<meta name="generator" content="Hugo 0.81.0" />
 
 
 <link rel="canonical" href="/post/system-information-for-better-reproducibility/">
@@ -139,9 +139,9 @@
     
     
   <header class="site-header">
-  <a href="/"><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
+  <a href=""><img class="avatar" src="/images/aritra-biswas.png" alt="Avatar"></a>
   
-  <h2 class="title"><a href="/">Panda Learns To Code</a></h2>
+  <h2 class="title"><a href="">Panda Learns To Code</a></h2>
   
   <p class="subtitle">~ Stay Hungry Stay Foolish ~</p>
   <button class="menu-toggle" type="button" aria-label="Main Menu" aria-expanded="false" tab-index="0">
@@ -236,7 +236,7 @@
       <p class="post-meta">@Aritra · Mar 3, 2020 · 2 min read</p>
     </header>
     <article class="post-content"><p>One of the essential aspects of coding is debugging. Reproducibility makes it easy to share a problem. I have personally seen that if we are stuck in a massive problem, making a smaller reproducible version of it helps in many ways. It is not always easy to think about the problem with a higher dimension of complexity, sometimes making it easier helps to understand the issue in a better way.</p>
-<p>Many times I have seen that while formulating the problem, the solution comes to my mind. I don't know if the same for everyone else or not. But quite often, I have seen that people share a problem, which is perfectly reproducible, but the environment-related information is missing in the post or the log. It is tough and many times impossible to solve such a problem if the required information about the environment and libraries are not known. Here is a snippet that I use while logging or sharing any code with my peers, which is quite useful, in my opinion.</p>
+<p>Many times I have seen that while formulating the problem, the solution comes to my mind. I don&rsquo;t know if the same for everyone else or not. But quite often, I have seen that people share a problem, which is perfectly reproducible, but the environment-related information is missing in the post or the log. It is tough and many times impossible to solve such a problem if the required information about the environment and libraries are not known. Here is a snippet that I use while logging or sharing any code with my peers, which is quite useful, in my opinion.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas <span style="color:#f92672">as</span> pd
 <span style="color:#f92672">import</span> numpy <span style="color:#f92672">as</span> np
 <span style="color:#f92672">from</span> logzero <span style="color:#f92672">import</span> logger
@@ -248,17 +248,17 @@
 <span style="color:#f92672">import</span> pyarrow <span style="color:#f92672">as</span> pa
 
 <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">show_system_info</span>(logger<span style="color:#f92672">=</span>logger):
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Pandas version: {pd.__version__}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Numpy version: {np.__version__}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Number of CPU cores: {pa.cpu_count()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform: {platform.system()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform release: {platform.release()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Platform version: {platform.version()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Architecture: {platform.machine()}</span><span style="color:#e6db74">&#34;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">Hostname: {socket.gethostname()}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">IP address: {socket.gethostbyname(socket.gethostname())}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">RAM : {str(round(psutil.virtual_memory().total / (1024.0 **3)))+</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> GB</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
-    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Pandas, Numpy and  Numexpr metadata:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Pandas version: {pd.__version__}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Numpy version: {np.__version__}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Number of CPU cores: {pa.cpu_count()}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Platform: {platform.system()}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Platform release: {platform.release()}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Platform version: {platform.version()}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#34;Architecture: {platform.machine()}&#34;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#39;Hostname: {socket.gethostname()}&#39;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#39;IP address: {socket.gethostbyname(socket.gethostname())}&#39;</span>)
+    logger<span style="color:#f92672">.</span>info(f<span style="color:#e6db74">&#39;RAM : {str(round(psutil.virtual_memory().total / (1024.0 **3)))+&#34; GB&#34;}&#39;</span>)
+    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;Pandas, Numpy and  Numexpr metadata:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
     pd<span style="color:#f92672">.</span>show_versions()
     np<span style="color:#f92672">.</span>show_config()
     numexpr<span style="color:#f92672">.</span>print_versions()
@@ -279,7 +279,7 @@ show_system_info()
       </ul>
       
       <p class="post-copyright">
-        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.
+        © This post is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License，please give source if you wish to quote or reproduce.This post was published <strong>360</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -288,7 +288,7 @@ show_system_info()
   </section>
   
 <footer class="site-footer">
-  <p>© 2017-2020 Panda Learns To Code</p>
+  <p>© 2017-2021 Panda Learns To Code</p>
   <p>Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> with theme <a href="https://github.com/laozhu/hugo-nuo" target="_blank" rel="noopener">Nuo</a>.</p>
   
 </footer>

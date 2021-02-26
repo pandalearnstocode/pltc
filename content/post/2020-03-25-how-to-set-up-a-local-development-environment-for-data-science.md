@@ -7,7 +7,7 @@ categories:
   - Data Science
   - Programming
 tags: []
-cover: /images/cover.jpg
+cover: /img/python_img/python_logo.png
 ---
 
 In most of the places, I see a lot of blog post regarding the many case studies or implementation of models. But here in this blog post, I am going to talk about some basic stuff. I feel that this topic is quite important and in general, these are the things which are ignored in most of the cases. As a data scientist, we use IDEs all the times. This is important to configure IDEs correct to use gain the full potential of the IDE and the Programming Language. It does not only increases productivity, but at the same, it makes things easier. Here I am going to talk about two IDEs and Jupyter ecosystem.
